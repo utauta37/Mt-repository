@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>どのやまのぼる？～関東編～</title>
+	<meta name="description" content="楽しい山登り。明日はどの山登る？">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="icon" href="../public/img/favicon.ico">
+	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
+	<link th:href="@{/css/top.css}" rel="stylesheet" />
+</head>
+<body>
+	<main>
+    	<!-- header -->
+		<header id="header" class="container">
+			<h1 class="site-title">どのやまのぼる？</h1>
+			<ul>
+				<li><a href="#">新規登録</a></li>
+				<li><a href="#">ログイン</a></li>
+			</ul>
+		</header>
+
+		<!-- mainvisual -->
+		<div id="mainvisual">
+			<img th:src="@{/images/IMG_0869.JPG}" alt="トップ画像">
+		</div>
+
+		<!-- サイトの説明 -->
+		<div class="container">
+			<h2 class="copy">目的があっても　運任せでも</h2>
+				<p>「明日、山に行こう！」そんなときに<br>
+				関東の手軽に出かけられる低山をメインに探せるサイトです。<br>
+				<br>
+				気分や条件で絞り込んでも、運に任せてボタンを押しても、<br>
+				最高のやまのぼりがあなたを待っています！</p>
+		</div>
+		
+		<!-- 検索ページ・運任せページへのリンク -->
+		<div class="container">
+			<a href="../view/search.html" class="btn mt">関東の山を探す</a>
+			<a href="#" class="btn">運に任せる！</a>
+		</div>
+		
+		<div class="container">
+			<h2>ユーザー登録でレビューができる</h2>
+			<p>ユーザー登録をすると<br>
+			登った山や、気に入った山のレビューを書くことができます。<br>
+			あなたのことばが、誰かのやまのぼりの参考になるかも…</p>
+		</div>
+
+		<!-- ログインページ・新規登録ページへのリンク -->
+		<div class="container">
+			<a href="../view/search.html" class="btn mt">新規登録</a>
+			<a href="#" class="btn">ログイン</a>
+		</div>
+
+
+		<!-- footer -->
+		<footer #id="footer" class="container">
+			<p>&copy; 2023  mina utada</p>
+		</footer>
+
+	</main>
+</body>
+</html>
