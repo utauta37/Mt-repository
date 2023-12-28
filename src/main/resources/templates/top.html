@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>どのやまのぼる？～関東編～</title>
@@ -38,7 +38,7 @@
 		
 		<!-- 検索ページ・運任せページへのリンク -->
 		<div class="container">
-			<a href="../view/search.html" class="btn mt">関東の山を探す</a>
+			<a th:href="@{/mountain/search}"  class="btn mt">関東の山を探す</a>
 			<a href="#" class="btn">運に任せる！</a>
 		</div>
 		
@@ -51,7 +51,7 @@
 
 		<!-- ログインページ・新規登録ページへのリンク -->
 		<div class="container">
-			<a href="../view/search.html" class="btn mt">新規登録</a>
+			<a href="#" class="btn mt">新規登録</a>
 			<a href="#" class="btn">ログイン</a>
 		</div>
 
