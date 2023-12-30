@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<title>どのやまのぼる？～関東編～</title>
@@ -21,6 +21,9 @@
 			</ul>
 		</header>
 		
-		<h2>検索結果！</h2>
+		<h2>詳細画面！</h2>
+		<table>
+			<p th:text="${mtData.content}"></p>
+		</table>
 </body>
 </html>
