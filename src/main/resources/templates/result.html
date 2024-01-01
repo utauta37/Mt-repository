@@ -21,20 +21,22 @@
 			</ul>
 		</header>
 		
-		<div class="container">
-			<div class="prefecture">
-				<h2>場所で検索</h2>
-				<ul>
-					<li><a th:href="@{/mountain/search}" class="btn mt">東京</a></li>
-					<li><a th:href="@{/mountain/random-show}" class="btn">茨城</a></li>
-					<li><a th:href="@{/mountain/search}" class="btn mt">栃木</a></li>
-					<li><a th:href="@{/mountain/random-show}" class="btn">群馬</a></li>
-					<li><a th:href="@{/mountain/search}" class="btn mt">埼玉</a></li>
-					<li><a th:href="@{/mountain/random-show}" class="btn">千葉</a></li>
-					<li><a th:href="@{/mountain/search}" class="btn mt">神奈川</a></li>
-					<li><a th:href="@{/mountain/result-all}" class="btn">すべての山</a></li>
-				</ul>
-			</div>
-		</div>
+		
+			<th:block th:each="mtData:${mtList}">
+				<div th:object="${mtData}">
+					<h2 th:text="*{name}"></h2>
+					<dl>
+						<dt>場所</dt>
+						<dd th:text="*{prefecture}"></dd>
+						
+						<dt>コースタイム</dt>
+						<dd th:text="*{time}+'分'"></dd>
+					</dl>
+				</div>
+			</th:block>
+		
+		
+	</main>
+
 </body>
 </html>
