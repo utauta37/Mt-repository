@@ -16,16 +16,24 @@ public class MountainService implements MountainMapper {
 	@Autowired
 	MountainMapper mountainMapper;
 	
+	//「運まかせ」ランダム取得の結果を返す
+	@Override
+	public Mountains showOne(){
+		return mountainMapper.showOne();
+	}
+	
 	//「すべての山」全件取得
 	@Override
 	public List<Mountains> showAll(){
 		return mountainMapper.showAll();
 	}
 	
-	//「運まかせ」ランダム取得の結果を返す
+	//「場所で検索」選ばれたボタンによって取得
 	@Override
-	public Mountains showOne(){
-		return mountainMapper.showOne();
+	public List<Mountains> selectPref(String prefecture){
+		return mountainMapper.selectPref(prefecture);
 	}
+	
+
 }
 

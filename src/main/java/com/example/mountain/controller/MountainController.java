@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mountain.entity.Mountains;
 import com.example.mountain.service.MountainService;
@@ -31,13 +32,6 @@ public class MountainController {
 		return "search.html";
 	}
 	
-	@GetMapping("/mountain/result-all")
-	public String select(Model model) {
-		List<Mountains> mountainList = mountainService.showAll();
-		model.addAttribute("mtList",mountainList);
-		return "result.html";
-	}
-	
 	/*
 	 * Serviceからデータを受け取りmountainに代入
 	 * mtDataという名前でmountainにある情報を格納
@@ -50,5 +44,18 @@ public class MountainController {
 		return "show.html";
 	}
 	
+	@GetMapping("/mountain/result-all")
+	public String select(Model model) {
+		List<Mountains> mountainList = mountainService.showAll();
+		model.addAttribute("mtList",mountainList);
+		return "result.html";
+	}
+	
+	@GetMapping("/mountain/result-prefecture")
+	public String selectPref(@RequestParam("prefecture") String prefecture,Model model) {
+		List<Mountains> mountainList = mountainService.selectPref(prefecture);
+		model.addAttribute("mtList",mountainList);
+		return "result.html";
+	}
 
 }

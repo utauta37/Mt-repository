@@ -24,16 +24,40 @@
 		<div class="container">
 			<div class="prefecture">
 				<h2>場所で検索</h2>
-				<ul>
-					<li><a th:href="@{/mountain/search}" class="btn mt">東京</a></li>
-					<li><a th:href="@{/mountain/random-show}" class="btn">茨城</a></li>
-					<li><a th:href="@{/mountain/search}" class="btn mt">栃木</a></li>
-					<li><a th:href="@{/mountain/random-show}" class="btn">群馬</a></li>
-					<li><a th:href="@{/mountain/search}" class="btn mt">埼玉</a></li>
-					<li><a th:href="@{/mountain/random-show}" class="btn">千葉</a></li>
-					<li><a th:href="@{/mountain/search}" class="btn mt">神奈川</a></li>
-					<li><a th:href="@{/mountain/result-all}" class="btn">すべての山</a></li>
-				</ul>
+				
+				<form th:action="@{/mountain/result-prefecture}" method="get">
+					<button type="submit" name="prefecture" value="東京">東京</button>
+					<button type="submit" name="prefecture" value="茨城">茨城</button>
+					<button type="submit" name="prefecture" value="栃木">栃木</button>
+					<button type="submit" name="prefecture" value="群馬">群馬</button>
+					<button type="submit" name="prefecture" value="埼玉">埼玉</button>
+					<button type="submit" name="prefecture" value="千葉">千葉</button>
+					<button type="submit" name="prefecture" value="神奈川">神奈川</button>
+					<a th:href="@{/mountain/result-all}">すべての山</a>
+				</form>
+				
+	
+			</div>
+			
+			<div class="time">
+				<h2>コースタイムで検索</h2>
+				
+				<form th:action="@{/mountain/result-coursetime}" method="get">
+					<button type="submit" name="time" value="long">長めの時間で楽しみたい</button>
+					<button type="submit" name="time" value="short">短い時間でサクッと登りたい</button>
+				</form>
+				
+			</div>
+			
+			<div class="feeling">
+				<h2>気分で検索</h2>
+				
+				<form  th:action="@{/mountain/result-feeling}" method="get">
+					<button type="submit" name="feeling" value="1">自然に癒されたい</button>
+					<button type="submit" name="feeling" value="2">スリルを感じたい</button>
+					<button type="submit" name="feeling" value="3">観光もしたい</button>
+					<button type="submit" name="feeling" value="4">山グルメを味わいたい</button>
+				</form>
 			</div>
 		</div>
 </body>

@@ -5,11 +5,17 @@
      
 <mapper namespace="com.example.mountain.repository.MountainMapper">
 
+	<select id="showOne" resultType="com.example.mountain.entity.Mountains">
+		SELECT * FROM mountains ORDER BY RAND() LIMIT 1
+	</select>
+
 	<select id="showAll" resultType="com.example.mountain.entity.Mountains">
 		SELECT * FROM mountains
 	</select>
 
-	<select id="showOne" resultType="com.example.mountain.entity.Mountains">
-		SELECT * FROM mountains ORDER BY RAND() LIMIT 1
+	<select id="selectPref" parameterType="string" resultType="com.example.mountain.entity.Mountains">
+		SELECT * FROM mountains WHERE prefecture = #{prefecture}
 	</select>
+	
+
 </mapper>
