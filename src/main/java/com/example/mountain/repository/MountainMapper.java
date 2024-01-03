@@ -19,4 +19,7 @@ public interface MountainMapper {
 	//
 	public List<Mountains> selectPref(String prefecture);
 	
+	public List<Mountains> selectTime(String time);
+	
+	public Mountains findById(String id);
 }

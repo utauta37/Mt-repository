@@ -34,6 +34,14 @@ public class MountainService implements MountainMapper {
 		return mountainMapper.selectPref(prefecture);
 	}
 	
-
+	@Override
+	public List<Mountains> selectTime(String time){
+		return mountainMapper.selectTime(time);
+	}
+	
+	@Override
+	public Mountains findById(String id){
+		return mountainMapper.findById(id);
+	}
 }
 

@@ -20,11 +20,13 @@
 				<li><a href="#">ログイン</a></li>
 			</ul>
 		</header>
-		<!--<p th:text="${prefecture}"></p>-->
+		
 		
 			<th:block th:each="mtData:${mtList}">
 				<div th:object="${mtData}">
-					<h2 th:text="*{name}"></h2>
+					<a th:href="@{/mountain/show{id}(id=*{id})}">
+						<h2 th:text="*{name}"></h2>
+					</a>
 					<dl>
 						<dt>場所</dt>
 						<dd th:text="*{prefecture}"></dd>

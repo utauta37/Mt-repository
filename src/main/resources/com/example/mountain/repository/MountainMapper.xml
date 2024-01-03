@@ -17,5 +17,18 @@
 		SELECT * FROM mountains WHERE prefecture = #{prefecture}
 	</select>
 	
-
+	<select id="selectTime" resultType="com.example.mountain.entity.Mountains">
+		SELECT * FROM mountains
+		WHERE
+			<if test="time == 'long'">
+				time >= 100
+			</if>
+			<if test="time == 'short'">
+				100 > time
+			</if>
+	</select>
+	
+	<select id="findById" resultType="com.example.mountain.entity.Mountains">
+		SELECT * FROM mountains WHERE id = #{id}
+	</select>
 </mapper>
