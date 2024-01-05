@@ -5,11 +5,40 @@
      
 <mapper namespace="com.example.mountain.repository.MountainMapper">
 
-	<select id="showAll" resultType="com.example.mountain.entity.Mountains">
+	<select id="showOne" resultType="com.example.mountain.entity.Mountain">
+		SELECT * FROM mountains ORDER BY RAND() LIMIT 1
+	</select>
+
+	<select id="showAll" resultType="com.example.mountain.entity.Mountain">
 		SELECT * FROM mountains
 	</select>
 
-	<select id="showOne" resultType="com.example.mountain.entity.Mountains">
-		SELECT * FROM mountains ORDER BY RAND() LIMIT 1
+	<select id="selectPref" parameterType="string" resultType="com.example.mountain.entity.Mountain">
+		SELECT * FROM mountains WHERE prefecture = #{prefecture}
+	</select>
+	
+	<select id="selectTime" resultType="com.example.mountain.entity.Mountain">
+		SELECT * FROM mountains
+		WHERE
+			<if test="time == 'long'">
+				time >= 100
+				
+			</if>
+			<if test="time == 'short'">
+				100 > time
+			</if>
+	</select>
+	
+	<select id="selectFeel" resultType="com.example.mountain.entity.Mountain">
+		SELECT * FROM mountains
+		INNER JOIN mt_feeling
+			ON mountains.id = mt_feeling.mt_id
+				AND mt_feeling.feeling_id = #{feeling}
+		INNER JOIN feeling
+			ON mt_feeling.feeling_id = feeling.id
+	</select>
+	
+	<select id="findById" resultType="com.example.mountain.entity.Mountain">
+		SELECT * FROM mountains WHERE id = #{id}
 	</select>
 </mapper>

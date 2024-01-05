@@ -6,7 +6,7 @@ import lombok.Data;
 //カラム名と対応
 
 @Data
-public class Mountains {
+public class Mountain {
 	
 	private int id;
 	private String name;
@@ -14,4 +14,5 @@ public class Mountains {
 	private int time;
 	private String station;
 	private String prefecture;
+
 }
