@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="ja">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<title>どのやまのぼる？～関東編～</title>
@@ -17,7 +17,7 @@
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
 				<li><a href="#">新規登録</a></li>
-				<li><a href="#">ログイン</a></li>
+				<li><a th:href="@{/mountain/login}">ログイン</a></li>
 			</ul>
 		</header>
 

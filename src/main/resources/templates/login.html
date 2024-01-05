@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
 	<meta charset="UTF-8">
@@ -7,7 +8,6 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
 	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<!-- <link rel="stylesheet" href="../static/css/top.css"> -->
 	<link th:href="@{/css/top.css}" rel="stylesheet" />
 </head>
 <body>
@@ -21,35 +21,20 @@
 			</ul>
 		</header>
 		
-
-		<div th:object="${mtData}">
-			
-			<!-- 山の名前 -->
-			<h2 th:text="*{name}"></h2>
-	
-			<!-- 山の情報 -->	
-			<p><!-- 改行コードの変換  -->
-			<th:block th:if="*{content}">
-				<!-- \r\nなどがきたら改行の繰り返し -->
-				<th:block th:each="line: *{content.split('\\r\\n|\\r|\\n', -1)}">
-					<th:block th:text="${line}" />
-					<br />
-				</th:block>
-			</th:block>
-			</p>
-			
-			<dl>
-				<dt>場所</dt>
-				<dd th:text="*{prefecture}"></dd>
-				
-				<dt>コースタイム</dt>
-				<dd th:text="*{time}+'分'"></dd>
-				
-				<dt>最寄り駅</dt>
-				<dd th:text="*{station}"></dd>
-			</dl>
-
-		</div>
+		
+		<form th:action="@{/mountain/login}" method="POST" th:object="${userForm}">
+			<div>
+				<label>メールアドレス</label>
+				<input type="text" th:field="*{email}">
+			</div>
+			<div>
+				<label>パスワード</label>
+				<input type="password" th:field="*{password}">
+			</div>
+			<div>
+				<input type="submit" value="ログイン"/>
+			</div>
+		</form>
 		
 	</main>
 </body>
