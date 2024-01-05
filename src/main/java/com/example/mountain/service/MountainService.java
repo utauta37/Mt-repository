@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.mountain.entity.Mountains;
+import com.example.mountain.entity.Mountain;
 import com.example.mountain.repository.MountainMapper;
 
 //MountainMapperクラス（抽象クラス）のオーバーライドをして処理の記述
@@ -18,29 +18,34 @@ public class MountainService implements MountainMapper {
 	
 	//「運まかせ」ランダム取得の結果を返す
 	@Override
-	public Mountains showOne(){
+	public Mountain showOne(){
 		return mountainMapper.showOne();
 	}
 	
 	//「すべての山」全件取得
 	@Override
-	public List<Mountains> showAll(){
+	public List<Mountain> showAll(){
 		return mountainMapper.showAll();
 	}
 	
-	//「場所で検索」選ばれたボタンによって取得
+	//「場所で検索」選ばれたprefectureによって取得
 	@Override
-	public List<Mountains> selectPref(String prefecture){
+	public List<Mountain> selectPref(String prefecture){
 		return mountainMapper.selectPref(prefecture);
 	}
-	
+	//「コースタイムで検索」二択で分岐
 	@Override
-	public List<Mountains> selectTime(String time){
+	public List<Mountain> selectTime(String time){
 		return mountainMapper.selectTime(time);
 	}
-	
+	//「気分で検索」選ばれたfeelingによって取得
 	@Override
-	public Mountains findById(String id){
+	public List<Mountain> selectFeel(String feeling){
+		return mountainMapper.selectFeel(feeling);
+	}
+	//「山の名前」山のidによって取得
+	@Override
+	public Mountain findById(String id){
 		return mountainMapper.findById(id);
 	}
 }

@@ -4,22 +4,27 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.mountain.entity.Mountains;
+import com.example.mountain.entity.Mountain;
 
 //インターフェースに＠Mapperアノテーションを付与することで自動的にSpringのBeanとして登録される
 @Mapper
 public interface MountainMapper {
 	
 	//一件ランダム取得
-	public Mountains showOne();
+	public Mountain showOne();
 	
 	//全件のデータを一覧で取得
-	public List<Mountains> showAll();
+	public List<Mountain> showAll();
 	
-	//
-	public List<Mountains> selectPref(String prefecture);
+	//prefectureの値に応じてデータを取得
+	public List<Mountain> selectPref(String prefecture);
 	
-	public List<Mountains> selectTime(String time);
+	//「long」または「short」でデータを取得
+	public List<Mountain> selectTime(String time);
 	
-	public Mountains findById(String id);
+	//feeling１～４の数字に応じてデータを取得
+	public List<Mountain> selectFeel(String feeling);
+	
+	//idにあったデータを一件取得
+	public Mountain findById(String id);
 }
