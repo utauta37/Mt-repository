@@ -16,7 +16,7 @@
 		<header id="header" class="container">
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
-				<li><a href="#">新規登録</a></li>
+				<li><a th:href="@{/mountain/register}">新規登録</a></li>
 				<li><a th:href="@{/mountain/login}">ログイン</a></li>
 			</ul>
 		</header>
@@ -51,8 +51,8 @@
 
 		<!-- ログインページ・新規登録ページへのリンク -->
 		<div class="container">
-			<a href="../view/search.html" class="btn mt">新規登録</a>
-			<a href="#" class="btn">ログイン</a>
+			<a th:href="@{/mountain/register}" class="btn mt">新規登録</a>
+			<a th:href="@{/mountain/login}" class="btn">ログイン</a>
 		</div>
 
 
