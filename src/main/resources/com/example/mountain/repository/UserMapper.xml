@@ -11,8 +11,16 @@
 			email,
 			password)
 		VALUES(
-			#{user_name},
+			#{userName},
 			#{email},
 			#{password})
 	</insert>
+	
+	<select id="selectUser" resultType="com.example.mountain.entity.User">
+		SELECT * FROM users 
+		WHERE 
+			email = #{email}
+		AND 
+			password = #{password}
+	</select>
 </mapper>

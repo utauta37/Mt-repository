@@ -7,8 +7,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
 	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<!-- <link rel="stylesheet" href="../static/css/top.css"> -->
-	<!--<link th:href="@{/css/top.css}" rel="stylesheet" />-->
+	<link th:href="@{/css/top.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
@@ -21,22 +20,16 @@
 			</ul>
 		</header>
 		
-		
-			<th:block th:each="mtData:${mtList}">
-				<div th:object="${mtData}">
-					<a th:href="@{/mountain/show{id}(id=*{id})}">
-						<h2 th:text="*{name}"></h2>
-					</a>
-					<dl>
-						<dt>場所</dt>
-						<dd th:text="*{prefecture}"></dd>
-						
-						<dt>コースタイム</dt>
-						<dd th:text="*{time}+'分'"></dd>
-					</dl>
-				</div>
-			</th:block>
-		
+		<h2>マイページ</h2>
+		<!--<div th:object="${userData}">
+			<h3 th:text="'こんにちは、'*{name}'さん！'"></h3>
+	
+			<h4>情報を変更する</h4>
+			<dl>
+				<dt>ユーザー名</dt>
+				<dd th:text="*{userName}"></dd>
+			</dl>
+		</div>-->
 		
 	</main>
 

@@ -6,20 +6,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-/** ログイン画面form
- * 
- * @author mina
- */
-
 @Data
-public class LoginForm implements Serializable{
+public class SigninForm implements Serializable{
+
+	@Size(max = 10,min = 1)
+	@NotBlank
+	private String userName;
 	
-	/** メールアドレス */
 	@Size(max = 256,min = 6)
 	@NotBlank
 	private String email;
 	
-	/** パスワード */
 	@Size(max = 128,min = 8)
 	@NotBlank
 	private String password;

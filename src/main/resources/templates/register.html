@@ -15,26 +15,28 @@
 		<header id="header" class="container">
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
-				<li><a th:href="@{/mountain/register}">新規登録</a></li>
+				<li><a th:href="@{/mountain/signin}">新規登録</a></li>
 				<li><a th:href="@{/mountain/login}">ログイン</a></li>
 			</ul>
 		</header>
 		
 		<h2>新規ユーザー登録</h2>
 		<p>新規ユーザー登録するには、ニックネームとメールアドレスとパスワードを入力してください</p>
-		<form th:action="@{/mountain/register}">
+		<form th:action="@{/mountain/signin}" method="post" th:object="${signinForm}">
 			<div>
 				<label>ニックネーム（10文字以内）</label>
-				<input type="text">
+				<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" style="color: red"></span><br />
+				<input type="text" th:field="*{userName}">
 			</div>
 			<div>
 				<label>メールアドレス</label>
-				
-				<input type="text">
+				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: red"></span><br />
+				<input type="text" th:field="*{email}">
 			</div>
 			<div>
 				<label>パスワード</label>
-				<input type="password">
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></span><br />
+				<input type="password" th:field="*{password}">
 			</div>
 			<div>
 				<input type="submit" value="新規登録"/>

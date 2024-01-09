@@ -2,8 +2,10 @@ package com.example.mountain.entity;
 
 import lombok.Data;
 
-//DBから持ってきた情報を保管する
-//カラム名と対応
+/*
+ * mountainssテーブルから取得したデータを保管
+ * 各カラム名に対応
+ */
 
 @Data
 public class Mountain {
