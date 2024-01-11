@@ -17,7 +17,7 @@ public class LoginForm implements Serializable{
 	/** メールアドレス */
 	@Size(max = 256,min = 6)
 	@NotBlank
-	private String email;
+	private String username;
 	
 	/** パスワード */
 	@Size(max = 128,min = 8)

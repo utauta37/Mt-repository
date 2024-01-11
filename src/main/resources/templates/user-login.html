@@ -9,21 +9,12 @@
 	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
 	<link th:href="@{/css/top.css}" rel="stylesheet" />
 </head>
-<body>
-	<main>
-    	<!-- header -->
-		<header id="header" class="container">
-			<h1 class="site-title">どのやまのぼる？</h1>
-			<ul>
-				<li><a th:href="@{/mountain/signup}">新規登録</a></li>
-				<li><a th:href="@{/mountain/login}">ログイン</a></li>
-			</ul>
-		</header>
-		
-		<h2>マイページ</h2>
-		
-		
-	</main>
 
+<body>
+	<div th:object="${userData}">
+		<h3 th:text="'こんにちは、'*{userName}'さん！'"></h3>
+
+		<a th:href="@{/mountain/user-mypage}">マイページはこちら</a>
+	</div>
 </body>
 </html>

@@ -2,9 +2,8 @@ package com.example.mountain.service;
 
 import org.springframework.stereotype.Service;
 
-import com.example.mountain.entity.User;
-import com.example.mountain.form.LoginForm;
-import com.example.mountain.form.SigninForm;
+import com.example.mountain.entity.MtUser;
+import com.example.mountain.form.SignupForm;
 import com.example.mountain.repository.UserMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -19,13 +18,20 @@ public class UserService {
 	
 	/** ユーザー情報テーブルDAO */
 	private final UserMapper mapper;
+	
+	/** PasswordEncoder */
+	//private final PasswordEncoder passwordEncoder;
+	
 
 	/** ユーザー新規登録
 	 * 
-	 * @param signinForm 入力情報
+	 * @param signupForm 入力情報
 	 */
-	public void saveUser(SigninForm signinForm) {
-		mapper.saveUser(signinForm);
+	public void saveUser(SignupForm signupForm) {
+		mapper.saveUser(signupForm);
+		
+		//TODO パスワードをハッシュ化
+		
 	}
 	
 	/** ユーザー情報テーブル 入力情報で検索
@@ -33,7 +39,7 @@ public class UserService {
 	 * @param loginForm 
 	 * @return 検索結果
 	 */
-	public User selectUser(LoginForm loginForm){
-		return mapper.selectUser(loginForm);
+	public MtUser selectUser(String username){
+		return mapper.selectUser(username);
 	}
 }

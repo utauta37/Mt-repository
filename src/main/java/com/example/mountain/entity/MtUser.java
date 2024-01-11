@@ -8,13 +8,10 @@ import lombok.Data;
  * 
  */
 @Data
-public class User {
+public class MtUser {
 
 	/** ユーザー名 */
 	private String userName;
-	
-	/** メールアドレス */
-	private String email;
 	
 	/** パスワード */
 	private String password;

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
 	<meta charset="UTF-8">
@@ -21,24 +20,20 @@
 			</ul>
 		</header>
 		
-		<h2>ログイン</h2>
-		<p>ログインするにはメールアドレスとパスワードを入力してください</p>
+		<h2>入力内容の確認</h2>
 		
-		<form th:action="@{/mountain/login}" method="POST" th:object="${loginForm}">
+		<form th:action="@{/mountain/signup}" method="post" th:object="${signupForm}">
+				<p th:text="'ユーザー名：' + *{username}"></p>
+				<input type="hidden" th:field="*{username}">
+				<p th:text="'パスワード：' + *{password}"></p>
+				<input type="hidden" th:field="*{password}">
+				
 			<div>
-				<label>ユーザー名</label>
-				<input type="text" th:field="*{username}">
-			</div>
-			<div>
-				<label>パスワード</label>
-				<input type="password" th:field="*{password}">
-			</div>
-			<div>
-				<input type="submit" value="ログイン"/>
+				<input type="submit" name="save" value="新規登録">
 			</div>
 		</form>
 		
-		<a th:href="@{/mountain/signup}">ユーザー登録がまだの方はこちら</a>
+		<a th:href="@{/mountain/login}">すでにユーザー登録済の方はこちら</a>
 	</main>
 </body>
 </html>

@@ -6,21 +6,17 @@
 <mapper namespace="com.example.mountain.repository.UserMapper">
 
 	<insert id="saveUser">
-		INSERT INTO users(
-			user_name,
-			email,
+		INSERT INTO mt_users(
+			username,
 			password)
 		VALUES(
-			#{userName},
-			#{email},
+			#{username},
 			#{password})
 	</insert>
 	
-	<select id="selectUser" resultType="com.example.mountain.entity.User">
-		SELECT * FROM users 
+	<select id="selectUser" resultType="com.example.mountain.entity.MtUser">
+		SELECT * FROM mt_users 
 		WHERE 
-			email = #{email}
-		AND 
-			password = #{password}
+			username = #{username}
 	</select>
 </mapper>
