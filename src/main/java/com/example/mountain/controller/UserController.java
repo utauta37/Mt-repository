@@ -88,5 +88,8 @@ public class UserController {
 		return "mypage.html";
 	}
 	
-
+	@GetMapping("/mountain/user-mypage")
+	public String mypageView(Model model) {
+		return "mypage.html";
+	}
 }

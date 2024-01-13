@@ -11,7 +11,7 @@ import lombok.Data;
 public class MtUser {
 
 	/** ユーザー名 */
-	private String userName;
+	private String username;
 	
 	/** パスワード */
 	private String password;
