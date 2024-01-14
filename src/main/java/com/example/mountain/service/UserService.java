@@ -2,6 +2,7 @@ package com.example.mountain.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mountain.entity.MtUser;
 import com.example.mountain.form.SignupForm;
@@ -23,18 +24,29 @@ public class UserService {
 	/** PasswordEncoder */
 	private final PasswordEncoder passwordEncoder;
 	
+	
+	
+	public boolean userCheck(SignupForm signupForm){
+		// 二重登録のチェック
+		
+		if(mapper.findByUsername(signupForm.getUsername()) != null) {
+			return true;
+		}
+		return false;
+	}
+	
 
 	/** ユーザー新規登録
 	 * 
 	 * @param signupForm 入力情報
+	 * @throws Exception 
 	 */
-	public void saveUser(SignupForm signupForm) {
-		//パスワードをハッシュ化して、saveUser()に渡すオブジェクトにセット。
+	@Transactional
+	public void createUser(SignupForm signupForm){
+		
+		//パスワードをハッシュ化して、insertUser()に渡すオブジェクトにセット。
 		signupForm.setPassword(passwordEncoder.encode(signupForm.getPassword()));
-		mapper.saveUser(signupForm);
-		
-		//TODO パスワードをハッシュ化
-		
+		mapper.insertUser(signupForm);	
 	}
 	
 	/** ユーザー情報テーブル 入力情報で検索
@@ -42,7 +54,10 @@ public class UserService {
 	 * @param loginForm 
 	 * @return 検索結果
 	 */
-	public MtUser selectUser(String username){
-		return mapper.selectUser(username);
+	public MtUser getUserByUsername(String username){
+		return mapper.findByUsername(username);
 	}
+	
+
+
 }

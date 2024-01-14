@@ -15,8 +15,9 @@
 		<header id="header" class="container">
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
-				<li><a th:href="@{/mountain/signup}">新規登録</a></li>
-				<li><a th:href="@{/mountain/login}">ログイン</a></li>
+				<li><form th:action="@{/logout}" method="post">
+					<input type="submit" name="logout" value="ログアウト">
+				</form></li>
 			</ul>
 		</header>
 		
@@ -31,9 +32,7 @@
 			
 		</div>
 		
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" name="logout" value="ログアウト">
-		</form>
+		
 			
 			
 	</main>

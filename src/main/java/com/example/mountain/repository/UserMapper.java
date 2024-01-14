@@ -12,8 +12,10 @@ import com.example.mountain.form.SignupForm;
 @Mapper
 public interface UserMapper {
 
-	void saveUser(SignupForm signupForm);
+	void insertUser(SignupForm signupForm);
 	
-	public MtUser selectUser(String username);
+	public MtUser findByUsername(String username);
+	
+	public MtUser selectUser(SignupForm signupForm);
 	
 }

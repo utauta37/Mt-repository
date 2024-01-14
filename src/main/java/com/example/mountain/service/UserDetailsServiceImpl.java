@@ -16,16 +16,24 @@ import lombok.RequiredArgsConstructor;
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	private final UserMapper mapper;
+	
+	//private final PasswordEncoder passwordEncoder;
 
 	//selectUserで取得した情報を、UserDetailsインターフェースを実装するUserクラスに変換する
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {	
-		MtUser mtUser = mapper.selectUser(username);
+		MtUser mtUser = mapper.findByUsername(username);
 		//情報が取得できなかった場合UsernameNotFoundExceptionでthrowsする
 		if(mtUser == null) {
 			throw new UsernameNotFoundException("User not found:" + username);
 		}
 		return (new UserDetailsImpl(mtUser));
 	}
+	
+//	@Transactional
+//	public void register(String username,String password) {
+//		//signupForm.setPassword(passwordEncoder.encode(signupForm.getPassword()));
+//		mapper.insertUser(username,passwordEncoder.encode(password));
+//	}
 
 }

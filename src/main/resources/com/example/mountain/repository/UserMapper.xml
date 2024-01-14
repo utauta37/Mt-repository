@@ -5,7 +5,7 @@
      
 <mapper namespace="com.example.mountain.repository.UserMapper">
 
-	<insert id="saveUser">
+	<insert id="insertUser">
 		INSERT INTO mt_users(
 			username,
 			password)
@@ -14,9 +14,10 @@
 			#{password})
 	</insert>
 	
-	<select id="selectUser" resultType="com.example.mountain.entity.MtUser">
+	<select id="findByUsername" resultType="com.example.mountain.entity.MtUser">
 		SELECT * FROM mt_users 
 		WHERE 
 			username = #{username}
 	</select>
+	
 </mapper>

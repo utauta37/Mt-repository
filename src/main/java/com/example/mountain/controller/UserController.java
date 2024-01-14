@@ -38,7 +38,7 @@ public class UserController {
 	 * @return 表示画面
 	 */
 	@GetMapping("/mountain/signup")
-	public String registerView(SignupForm signupForm,Model model) {
+	public String registerView(SignupForm signupForm) {
 		return "register.html";
 	}
 	
@@ -48,21 +48,24 @@ public class UserController {
 	 * @param signupForm
 	 * @param result バインド結果
 	 * @return 確認画面または入力画面へのパス
+	 * @throws Exception 
 	 */
 	@PostMapping(value="/mountain/signup",params="next")
 	public String register(@Validated SignupForm signupForm,BindingResult result,Model model) {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
-			return "register.html"; 
+			return "register.html";
+		}else if(service.userCheck(signupForm)){
+			model.addAttribute("signupError","ユーザー名がすでに使用されています");
+			return "register.html";
 		}
-		
 		return "confirm.html";
 	}
 	
 	@PostMapping(value="/mountain/signup",params="save")
 	public String register(SignupForm signupForm,Model model) {
-		service.saveUser(signupForm);
-		return "redirect:/mountain/login";
+		service.createUser(signupForm);
+		return "redirect:/mountain";
 	}
 	
 	
@@ -87,9 +90,6 @@ public class UserController {
 	 */
 	@GetMapping("/mountain/user-mypage")
 	public String login(@AuthenticationPrincipal UserDetailsImpl user,Model model) {
-		/*AuthenticationでログインUserの情報を使うことができるので
-        modelを使って、"userData"にloginUserを詰める*/
-		//model.addAttribute("userData",user);
 		return "mypage.html";
 	}
 	

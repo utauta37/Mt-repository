@@ -33,7 +33,7 @@ public class WebSecurityConfig {
 				.permitAll()
 		).logout(logout -> logout
 				//.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/mountain/login")
+				.logoutSuccessUrl("/mountain")
 				.invalidateHttpSession(true)
 		).authorizeHttpRequests(authz -> authz
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()

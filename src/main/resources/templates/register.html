@@ -28,6 +28,9 @@
 	                <span th:text="${error.message}"></span>
 	            </li>
         	</ul>
+			<div th:if="${signupError}">
+				<p th:text="${signupError}"></p>
+			</div>
         
 			<div>
 				<label>ニックネーム（10文字以内）</label>
