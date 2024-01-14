@@ -24,6 +24,9 @@
 		<h2>ログイン</h2>
 		<p>ログインするにはメールアドレスとパスワードを入力してください</p>
 		
+		<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+            th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></p>
+		
 		<form th:action="@{/mountain/login}" method="POST" th:object="${loginForm}">
 			<div>
 				<label>ユーザー名</label>

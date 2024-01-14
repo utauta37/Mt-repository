@@ -31,9 +31,13 @@ public class WebSecurityConfig {
 				.failureUrl("/mountain/login?error")
 				//ログイン画面は未認証でもアクセス可能
 				.permitAll()
+		).logout(logout -> logout
+				//.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/mountain/login")
+				.invalidateHttpSession(true)
 		).authorizeHttpRequests(authz -> authz
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-				.requestMatchers("/mountain").permitAll()
+				.requestMatchers("/mountain","/mountain/result**","/mountain/search","/mountain/show**","/mountain/signup").permitAll()
 				.anyRequest().authenticated()
 		);
 		return http.build();

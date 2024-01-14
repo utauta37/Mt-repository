@@ -22,8 +22,20 @@
 		
 		<h2>マイページ</h2>
 		
+		<div>
+			<h3>こんにちは、<span sec:authentication="principal.username"></span>さん！</h3>
+		</div>
 		
+		<div>
+			<h4>ユーザー情報の変更</h4>
+			
+		</div>
+		
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" name="logout" value="ログアウト">
+		</form>
+			
+			
 	</main>
-
 </body>
 </html>
