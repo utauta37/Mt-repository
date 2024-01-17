@@ -21,18 +21,35 @@
 			</ul>
 		</header>
 		
-		<h2>マイページ</h2>
+		<h2>ユーザー情報の変更</h2>
+		
 		
 		<div>
-			<h3>こんにちは、<span sec:authentication="principal.username"></span>さん！</h3>
+			<p>ユーザー情報</p>
+			<ul>
+				<li>ユーザー名：<span sec:authentication="principal.username"></li>
+				
+				<li>パスワード：</li>
+			</ul>
 		</div>
 		
 		<div>
-			<h4>ユーザー情報の変更</h4>
+			<p>ユーザー情報の変更</p>
+			<form th:action="@{/mountain/user-update}" method="post" th:object="${updateForm}">
 			
+			<div>
+				<label>ニックネーム（10文字以内）</label>
+				<input type="text" th:field="*{username}">
+			</div>
+			<div>
+				<label>パスワード</label>
+				<input type="password" th:field="*{password}">
+			</div>
+			<div>
+				<input type="submit" name="next" value="確認">
+			</div>
+		</form>
 		</div>
-		
-		
 			
 			
 	</main>

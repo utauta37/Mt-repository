@@ -9,6 +9,8 @@ import lombok.Data;
  */
 @Data
 public class MtUser {
+	
+	private int id;
 
 	/** ユーザー名 */
 	private String username;

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.mountain.authentication.UserDetailsImpl;
 import com.example.mountain.form.LoginForm;
 import com.example.mountain.form.SignupForm;
+import com.example.mountain.form.UpdateForm;
 import com.example.mountain.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,7 +40,7 @@ public class UserController {
 	 */
 	@GetMapping("/mountain/signup")
 	public String registerView(SignupForm signupForm) {
-		return "register.html";
+		return "mtUsers/register.html";
 	}
 	
 	/**
@@ -54,12 +55,12 @@ public class UserController {
 	public String register(@Validated SignupForm signupForm,BindingResult result,Model model) {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
-			return "register.html";
+			return "mtUsers/register.html";
 		}else if(service.userCheck(signupForm)){
 			model.addAttribute("signupError","ユーザー名がすでに使用されています");
-			return "register.html";
+			return "mtUsers/register.html";
 		}
-		return "confirm.html";
+		return "mtUsers/confirm.html";
 	}
 	
 	@PostMapping(value="/mountain/signup",params="save")
@@ -67,6 +68,8 @@ public class UserController {
 		service.createUser(signupForm);
 		return "redirect:/mountain";
 	}
+	
+	
 	
 	
 	/** 
@@ -78,7 +81,7 @@ public class UserController {
 	 */
 	@GetMapping("/mountain/login")
 	public String loginView(LoginForm loginForm,Model model) {
-		return "login.html";
+		return "mtUsers/login.html";
 	}
 	
 
@@ -90,7 +93,39 @@ public class UserController {
 	 */
 	@GetMapping("/mountain/user-mypage")
 	public String login(@AuthenticationPrincipal UserDetailsImpl user,Model model) {
-		return "mypage.html";
+		return "mtUsers/mypage.html";
 	}
 	
+	
+	/**
+	 * ユーザー情報変更画面
+	 * 
+	 * @param user
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/mountain/user-update")
+	public String updateView(@AuthenticationPrincipal UserDetailsImpl user,UpdateForm updateForm,Model model) {
+		return "mtUsers/update.html";
+	}
+	
+	@PostMapping(value="/mountain/user-update",params="next")
+	public String update(@Validated UpdateForm updateForm,BindingResult result,Model model) {
+		//チェック処理を行い画面遷移する
+		if(result.hasErrors()) {
+			return "mtUsers/register.html";
+		//TODO　signupFormでuserCheckメソッドをつくっているのでそのまま使えない…
+		}else if(service.userCheck(updateForm)){
+			model.addAttribute("signupError","ユーザー名がすでに使用されています");
+			return "mtUsers/register.html";
+		}
+		return "mtUsers/confirm.html";
+	}
+	
+	@PostMapping(value="/mountain/user-update",params="save")
+	public String update(UpdateForm updateForm,Model model) {
+		//TODO　別でServiceつくるしかない？？？
+		service.updateUser(updateForm);
+		return "redirect:/mountain";
+	}
 }

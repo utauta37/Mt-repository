@@ -20,7 +20,11 @@ public class UserDetailsImpl implements UserDetails {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
-
+	
+	public int GetId() {
+		return mtUser.getId();
+	}
+	
 	@Override
 	public String getPassword() {
 		return mtUser.getPassword();
