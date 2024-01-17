@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.mountain.entity.MtUser;
 import com.example.mountain.form.SignupForm;
+import com.example.mountain.form.UpdateForm;
 
 /** ユーザー情報Mapper
  * 
@@ -17,5 +18,7 @@ public interface UserMapper {
 	public MtUser findByUsername(String username);
 	
 	public MtUser selectUser(SignupForm signupForm);
+	
+	public MtUser updateUser(UpdateForm updateForm);
 	
 }

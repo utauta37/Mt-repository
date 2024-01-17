@@ -29,13 +29,13 @@ public class MountainController {
 	//topページ表示
 	@GetMapping("/mountain")
 	public String top() {
-		return "top.html";
+		return "mountains/top.html";
 	}
 	
 	// 検索ページを表示
 	@GetMapping("/mountain/search")
 	public String search() {
-		return "search.html";
+		return "mountains/search.html";
 	}
 	
 	//運任せボタン（詳細画面を表示）
@@ -43,7 +43,7 @@ public class MountainController {
 	public String randomShow(Model model) {
 		Mountain mountain = mountainService.showOne();
 		model.addAttribute("mtData",mountain);
-		return "show.html";
+		return "mountains/show.html";
 	}
 	
 	
@@ -55,28 +55,28 @@ public class MountainController {
 	public String select(Model model) {
 		List<Mountain> mountainList = mountainService.showAll();
 		model.addAttribute("mtList",mountainList);
-		return "result.html";
+		return "mountains/result.html";
 	}
 	//場所で探す
 	@GetMapping("/mountain/result-prefecture")
 	public String selectPref(@RequestParam("prefecture") String prefecture,Model model) {
 		List<Mountain> mountainList = mountainService.selectPref(prefecture);
 		model.addAttribute("mtList",mountainList);
-		return "result.html";
+		return "mountains/result.html";
 	}
 	//コースタイムで探す
 	@GetMapping("/mountain/result-coursetime")
 	public String selectTime(@RequestParam("time") String time,Model model) {
 		List<Mountain> mountainList = mountainService.selectTime(time);
 		model.addAttribute("mtList",mountainList);
-		return "result.html";
+		return "mountains/result.html";
 	}
 	//気分で探す
 	@GetMapping("/mountain/result-feeling")
 	public String selectFeel(@RequestParam("feeling") String feeling,Model model) {
 		List<Mountain> mountainList = mountainService.selectFeel(feeling);
 		model.addAttribute("mtList",mountainList);
-		return "result.html";
+		return "mountains/result.html";
 	}
 	
 	
@@ -88,6 +88,6 @@ public class MountainController {
 	public String showView(@PathVariable("id") String id,Model model) {
 		Mountain mountain = mountainService.findById(id);
 		model.addAttribute("mtData",mountain);
-		return "show.html";
+		return "mountains/show.html";
 	}
 }

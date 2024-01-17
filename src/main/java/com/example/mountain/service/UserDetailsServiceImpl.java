@@ -29,11 +29,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		}
 		return (new UserDetailsImpl(mtUser));
 	}
-	
-//	@Transactional
-//	public void register(String username,String password) {
-//		//signupForm.setPassword(passwordEncoder.encode(signupForm.getPassword()));
-//		mapper.insertUser(username,passwordEncoder.encode(password));
-//	}
+
 
 }

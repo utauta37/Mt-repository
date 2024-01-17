@@ -20,4 +20,23 @@
 			username = #{username}
 	</select>
 	
+	<update id="deleteUser">
+		UPDATE mt_users 
+		SET
+			deleted_at = now()
+		WHERE 
+			username = #{username}
+	</update>	
+	
+	<update id="updateUser">
+		UPDATE mt_users 
+		SET
+			username = #{username},
+			password = #{password}
+		WHERE 
+			id = #{id}
+	</update>
+	
+	
+	
 </mapper>

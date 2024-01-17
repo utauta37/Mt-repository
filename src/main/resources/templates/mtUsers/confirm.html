@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>どのやまのぼる？～関東編～</title>
+	<meta name="description" content="楽しい山登り。明日はどの山登る？">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="icon" href="../public/img/favicon.ico">
+	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
+	<link th:href="@{/css/top.css}" rel="stylesheet" />
+</head>
+<body>
+	<main>
+    	<!-- header -->
+		<header id="header" class="container">
+			<h1 class="site-title">どのやまのぼる？</h1>
+			<ul>
+				<li><a th:href="@{/mountain/signup}">新規登録</a></li>
+				<li><a th:href="@{/mountain/login}">ログイン</a></li>
+			</ul>
+		</header>
+		
+		<h2>入力内容の確認</h2>
+		
+		<form th:action="@{/mountain/signup}" method="post" th:object="${signupForm}">
+				<p th:text="'ユーザー名：' + *{username}"></p>
+				<input type="hidden" th:field="*{username}">
+				<p th:text="'パスワード：' + *{password}"></p>
+				<input type="hidden" th:field="*{password}">
+				
+			<div>
+				<input type="submit" name="save" value="登録">
+			</div>
+		</form>
+		
+		<a th:href="@{/mountain/login}">すでにユーザー登録済の方はこちら</a>
+	</main>
+</body>
+</html>

@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mountain.entity.MtUser;
 import com.example.mountain.form.SignupForm;
+import com.example.mountain.form.UpdateForm;
 import com.example.mountain.repository.UserMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -58,6 +59,11 @@ public class UserService {
 		return mapper.findByUsername(username);
 	}
 	
-
+	//TODO 
+	public void updateUser(UpdateForm updateForm) {
+		//パスワードをハッシュ化して、insertUser()に渡すオブジェクトにセット。
+		updateForm.setPassword(passwordEncoder.encode(updateForm.getPassword()));
+		mapper.updateUser(updateForm);	
+	}
 
 }
