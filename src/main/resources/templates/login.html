@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
 	<meta charset="UTF-8">
@@ -7,8 +8,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
 	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<!-- <link rel="stylesheet" href="../static/css/top.css"> -->
-	<!--<link th:href="@{/css/top.css}" rel="stylesheet" />-->
+	<link th:href="@{/css/top.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
@@ -21,24 +21,27 @@
 			</ul>
 		</header>
 		
+		<h2>ログイン</h2>
+		<p>ログインするにはメールアドレスとパスワードを入力してください</p>
 		
-			<th:block th:each="mtData:${mtList}">
-				<div th:object="${mtData}">
-					<a th:href="@{/mountain/show{id}(id=*{id})}">
-						<h2 th:text="*{name}"></h2>
-					</a>
-					<dl>
-						<dt>場所</dt>
-						<dd th:text="*{prefecture}"></dd>
-						
-						<dt>コースタイム</dt>
-						<dd th:text="*{time}+'分'"></dd>
-					</dl>
-				</div>
-			</th:block>
+		<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+            th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></p>
 		
+		<form th:action="@{/mountain/login}" method="POST" th:object="${loginForm}">
+			<div>
+				<label>ユーザー名</label>
+				<input type="text" th:field="*{username}">
+			</div>
+			<div>
+				<label>パスワード</label>
+				<input type="password" th:field="*{password}">
+			</div>
+			<div>
+				<input type="submit" value="ログイン"/>
+			</div>
+		</form>
 		
+		<a th:href="@{/mountain/signup}">ユーザー登録がまだの方はこちら</a>
 	</main>
-
 </body>
 </html>

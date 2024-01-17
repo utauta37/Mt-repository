@@ -7,8 +7,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
 	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<!-- <link rel="stylesheet" href="../static/css/top.css"> -->
-	<!--<link th:href="@{/css/top.css}" rel="stylesheet" />-->
+	<link th:href="@{/css/top.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
@@ -16,29 +15,26 @@
 		<header id="header" class="container">
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
-				<li><a th:href="@{/mountain/signup}">新規登録</a></li>
-				<li><a th:href="@{/mountain/login}">ログイン</a></li>
+				<li><form th:action="@{/logout}" method="post">
+					<input type="submit" name="logout" value="ログアウト">
+				</form></li>
 			</ul>
 		</header>
 		
+		<h2>マイページ</h2>
 		
-			<th:block th:each="mtData:${mtList}">
-				<div th:object="${mtData}">
-					<a th:href="@{/mountain/show{id}(id=*{id})}">
-						<h2 th:text="*{name}"></h2>
-					</a>
-					<dl>
-						<dt>場所</dt>
-						<dd th:text="*{prefecture}"></dd>
-						
-						<dt>コースタイム</dt>
-						<dd th:text="*{time}+'分'"></dd>
-					</dl>
-				</div>
-			</th:block>
+		<div>
+			<h3>こんにちは、<span sec:authentication="principal.username"></span>さん！</h3>
+		</div>
+		
+		<div>
+			<h4>ユーザー情報の変更</h4>
+			
+		</div>
 		
 		
+			
+			
 	</main>
-
 </body>
 </html>

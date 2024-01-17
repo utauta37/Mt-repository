@@ -39,7 +39,7 @@ public class MountainController {
 	}
 	
 	//運任せボタン（詳細画面を表示）
-	@GetMapping("/mountain/random-show")
+	@GetMapping("/mountain/result-random")
 	public String randomShow(Model model) {
 		Mountain mountain = mountainService.showOne();
 		model.addAttribute("mtData",mountain);

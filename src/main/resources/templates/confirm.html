@@ -7,8 +7,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
 	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<!-- <link rel="stylesheet" href="../static/css/top.css"> -->
-	<!--<link th:href="@{/css/top.css}" rel="stylesheet" />-->
+	<link th:href="@{/css/top.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
@@ -21,24 +20,20 @@
 			</ul>
 		</header>
 		
+		<h2>入力内容の確認</h2>
 		
-			<th:block th:each="mtData:${mtList}">
-				<div th:object="${mtData}">
-					<a th:href="@{/mountain/show{id}(id=*{id})}">
-						<h2 th:text="*{name}"></h2>
-					</a>
-					<dl>
-						<dt>場所</dt>
-						<dd th:text="*{prefecture}"></dd>
-						
-						<dt>コースタイム</dt>
-						<dd th:text="*{time}+'分'"></dd>
-					</dl>
-				</div>
-			</th:block>
+		<form th:action="@{/mountain/signup}" method="post" th:object="${signupForm}">
+				<p th:text="'ユーザー名：' + *{username}"></p>
+				<input type="hidden" th:field="*{username}">
+				<p th:text="'パスワード：' + *{password}"></p>
+				<input type="hidden" th:field="*{password}">
+				
+			<div>
+				<input type="submit" name="save" value="新規登録">
+			</div>
+		</form>
 		
-		
+		<a th:href="@{/mountain/login}">すでにユーザー登録済の方はこちら</a>
 	</main>
-
 </body>
 </html>

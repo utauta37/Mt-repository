@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>どのやまのぼる？～関東編～</title>
+	<meta name="description" content="楽しい山登り。明日はどの山登る？">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="icon" href="../public/img/favicon.ico">
+	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
+	<link th:href="@{/css/top.css}" rel="stylesheet" />
+</head>
+<body>
+	<main>
+    	<!-- header -->
+		<header id="header" class="container">
+			<h1 class="site-title">どのやまのぼる？</h1>
+			<ul>
+				<li><a th:href="@{/mountain/signup}">新規登録</a></li>
+				<li><a th:href="@{/mountain/login}">ログイン</a></li>
+			</ul>
+		</header>
+		
+		<h2>新規ユーザー登録</h2>
+		<p>新規ユーザー登録するには、ユーザー名とパスワードを入力してください</p>
+		<form th:action="@{/mountain/signup}" method="post" th:object="${signupForm}">
+			<ul>
+	            <li th:each="error : ${#fields.detailedErrors()}" style="color: red">
+	                <span th:text="${error.message}"></span>
+	            </li>
+        	</ul>
+			<div th:if="${signupError}">
+				<p th:text="${signupError}"></p>
+			</div>
+        
+			<div>
+				<label>ニックネーム（10文字以内）</label>
+				<input type="text" th:field="*{username}">
+			</div>
+			<div>
+				<label>パスワード</label>
+				<input type="password" th:field="*{password}">
+			</div>
+			<div>
+				<input type="submit" name="next" value="確認">
+			</div>
+		</form>
+		
+		<a th:href="@{/mountain/login}">すでにユーザー登録済の方はこちら</a>
+	</main>
+</body>
+</html>
