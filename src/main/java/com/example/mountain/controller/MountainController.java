@@ -2,7 +2,6 @@ package com.example.mountain.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,81 +12,122 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.mountain.entity.Mountain;
 import com.example.mountain.service.MountainService;
 
+import lombok.RequiredArgsConstructor;
+
+/**
+ * 山の検索機能controller
+ * 
+ * @author mina
+ */
+
+
 @Controller
-@RequestMapping("/")
+@RequiredArgsConstructor
+@RequestMapping("/mountain")
 public class MountainController {
 	
-	/*
-	 * MountainServiceクラスのインスタンス化
-	 */
-	@Autowired
-	MountainService mountainService;
+	/** MountainService */
+	private final MountainService mountainService;
 
-	/*
-	 * topページ
+	/**
+	 * top画面表示
+	 * 
+	 * @return　表示画面
 	 */
-	//topページ表示
-	@GetMapping("/mountain")
+	@GetMapping("")
 	public String top() {
 		return "mountains/top.html";
 	}
 	
-	// 検索ページを表示
-	@GetMapping("/mountain/search")
+	/**
+	 * 検索画面表示
+	 * 
+	 * @return　表示画面
+	 */
+	@GetMapping("/search")
 	public String search() {
 		return "mountains/search.html";
 	}
 	
-	//運任せボタン（詳細画面を表示）
-	@GetMapping("/mountain/result-random")
+	/**
+	 * 運任せボタン（詳細画面を表示）
+	 * 
+	 * @param model
+	 * @return 表示画面
+	 */
+	@GetMapping("/result-random")
 	public String randomShow(Model model) {
 		Mountain mountain = mountainService.showOne();
-		model.addAttribute("mtData",mountain);
+		model.addAttribute("mountain",mountain);
 		return "mountains/show.html";
 	}
 	
 	
-	/*
-	 * 検索ページ
+	/**
+	 * 検索画面（すべての山）
+	 * 
+	 * @param model
+	 * @return　検索結果一覧画面
 	 */
-	//すべての山
-	@GetMapping("/mountain/result-all")
+	@GetMapping("/result-all")
 	public String select(Model model) {
 		List<Mountain> mountainList = mountainService.showAll();
-		model.addAttribute("mtList",mountainList);
+		model.addAttribute("mountainList",mountainList);
 		return "mountains/result.html";
 	}
-	//場所で探す
-	@GetMapping("/mountain/result-prefecture")
+	/**
+	 * 検索画面（場所）
+	 * 
+	 * @param prefecture
+	 * @param model
+	 * @return　検索結果一覧画面
+	 */
+	@GetMapping("/result-prefecture")
 	public String selectPref(@RequestParam("prefecture") String prefecture,Model model) {
 		List<Mountain> mountainList = mountainService.selectPref(prefecture);
-		model.addAttribute("mtList",mountainList);
+		model.addAttribute("mountainList",mountainList);
 		return "mountains/result.html";
 	}
-	//コースタイムで探す
-	@GetMapping("/mountain/result-coursetime")
+	/**
+	 * 検索画面（コースタイム）
+	 * 
+	 * @param time
+	 * @param model
+	 * @return　検索結果一覧画面
+	 */
+	@GetMapping("/result-coursetime")
 	public String selectTime(@RequestParam("time") String time,Model model) {
 		List<Mountain> mountainList = mountainService.selectTime(time);
-		model.addAttribute("mtList",mountainList);
+		model.addAttribute("mountainList",mountainList);
 		return "mountains/result.html";
 	}
-	//気分で探す
-	@GetMapping("/mountain/result-feeling")
+	/**
+	 * 検索画面（気分）
+	 * 
+	 * @param feeling
+	 * @param model
+	 * @return　検索結果一覧画面
+	 */
+	@GetMapping("/result-feeling")
 	public String selectFeel(@RequestParam("feeling") String feeling,Model model) {
 		List<Mountain> mountainList = mountainService.selectFeel(feeling);
-		model.addAttribute("mtList",mountainList);
+		model.addAttribute("mountainList",mountainList);
 		return "mountains/result.html";
 	}
 	
 	
 	
-	/*
-	 * 詳細ページ
+	/**
+	 * 山の詳細画面
+	 * 
+	 * @param id　山のID
+	 * @param model
+	 * @return　表示画面
 	 */
-	@GetMapping("/mountain/show{id}")
+	@GetMapping("/show{id}")
 	public String showView(@PathVariable("id") String id,Model model) {
 		Mountain mountain = mountainService.findById(id);
-		model.addAttribute("mtData",mountain);
+		model.addAttribute("mountain",mountain);
 		return "mountains/show.html";
 	}
 }

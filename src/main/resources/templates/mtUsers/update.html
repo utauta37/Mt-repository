@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<title>どのやまのぼる？～関東編～</title>
@@ -41,7 +41,7 @@
 			<div>
 				<label>ニックネーム（10文字以内）</label>
 				<!-- fieldに値が入っているとvalueは効かないらしい -->
-				<input type="text" th:field="*{username}" value="${mtUser.username}">
+				<input type="text" th:field="*{username}" th:value="${mtUser.username}">
 			</div>
 			<div>
 				<label>パスワード</label>

@@ -6,6 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.mountain.entity.Mountain;
 
+/**
+ * 山の検索機能mapper
+ * 
+ * @author mina
+ */
 //インターフェースに＠Mapperアノテーションを付与することで自動的にSpringのBeanとして登録される
 @Mapper
 public interface MountainMapper {

@@ -16,14 +16,14 @@
 		<header id="header" class="container">
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
-				<li><a th:href="@{/mountain/signup}">新規登録</a></li>
-				<li><a th:href="@{/mountain/login}">ログイン</a></li>
+				<li><a th:href="@{/signup}">新規登録</a></li>
+				<li><a th:href="@{/login}">ログイン</a></li>
 			</ul>
 		</header>
 		
 		
-			<th:block th:each="mtData:${mtList}">
-				<div th:object="${mtData}">
+			<th:block th:each="mountain:${mountainList}">
+				<div th:object="${mountain}">
 					<a th:href="@{/mountain/show{id}(id=*{id})}">
 						<h2 th:text="*{name}"></h2>
 					</a>
