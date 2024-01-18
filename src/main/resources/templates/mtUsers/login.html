@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="ja">
 <head>
 	<meta charset="UTF-8">
 	<title>どのやまのぼる？～関東編～</title>
@@ -16,8 +16,8 @@
 		<header id="header" class="container">
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
-				<li><a th:href="@{/mountain/signup}">新規登録</a></li>
-				<li><a th:href="@{/mountain/login}">ログイン</a></li>
+				<li><a th:href="@{/signup}">新規登録</a></li>
+				<li><a th:href="@{/login}">ログイン</a></li>
 			</ul>
 		</header>
 		
@@ -27,7 +27,7 @@
 		<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
             th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></p>
 		
-		<form th:action="@{/mountain/login}" method="POST" th:object="${loginForm}">
+		<form th:action="@{/login}" method="POST" th:object="${loginForm}">
 			<div>
 				<label>ユーザー名</label>
 				<input type="text" th:field="*{username}">
@@ -41,7 +41,7 @@
 			</div>
 		</form>
 		
-		<a th:href="@{/mountain/signup}">ユーザー登録がまだの方はこちら</a>
+		<a th:href="@{/signup}">ユーザー登録がまだの方はこちら</a>
 	</main>
 </body>
 </html>

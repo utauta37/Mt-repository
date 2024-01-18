@@ -22,13 +22,13 @@ public class WebSecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
 		http.formLogin(login -> login
 				//ユーザー名、パスワードの送信先URL
-				.loginProcessingUrl("/mountain/login")
+				.loginProcessingUrl("/login")
 				//ログイン画面のURL
-				.loginPage("/mountain/login")
+				.loginPage("/login")
 				//ログイン成功後のリダイレクト先URL
-				.defaultSuccessUrl("/mountain/user-mypage")
+				.defaultSuccessUrl("/user-mypage")
 				//ログイン失敗後のリダイレクト先URL
-				.failureUrl("/mountain/login?error")
+				.failureUrl("/login?error")
 				//ログイン画面は未認証でもアクセス可能
 				.permitAll()
 		).logout(logout -> logout
@@ -37,7 +37,7 @@ public class WebSecurityConfig {
 				.invalidateHttpSession(true)
 		).authorizeHttpRequests(authz -> authz
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-				.requestMatchers("/mountain","/mountain/result**","/mountain/search","/mountain/show**","/mountain/signup").permitAll()
+				.requestMatchers("/mountain","/mountain/result**","/mountain/search","/mountain/show**","/signup").permitAll()
 				.anyRequest().authenticated()
 		);
 		return http.build();

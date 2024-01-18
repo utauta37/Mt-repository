@@ -39,7 +39,7 @@ public class UserController {
 	 * @param model
 	 * @return 表示画面
 	 */
-	@GetMapping("/mountain/signup")
+	@GetMapping("/signup")
 	public String registerView(SignupForm signupForm) {
 		return "mtUsers/register.html";
 	}
@@ -52,7 +52,7 @@ public class UserController {
 	 * @return 確認画面または入力画面へのパス
 	 * @throws Exception 
 	 */
-	@PostMapping(value="/mountain/signup",params="next")
+	@PostMapping(value="/signup",params="next")
 	public String register(@Validated SignupForm signupForm,BindingResult result,Model model) {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
@@ -64,10 +64,10 @@ public class UserController {
 		return "mtUsers/confirm.html";
 	}
 	
-	@PostMapping(value="/mountain/signup",params="save")
+	@PostMapping(value="/signup",params="save")
 	public String register(SignupForm signupForm,Model model) {
 		service.createUser(signupForm);
-		return "redirect:/mountain";
+		return "redirect:/";
 	}
 	
 	
@@ -80,7 +80,7 @@ public class UserController {
 	 * @param model
 	 * @return 表示画面
 	 */
-	@GetMapping("/mountain/login")
+	@GetMapping("/login")
 	public String loginView(LoginForm loginForm,Model model) {
 		return "mtUsers/login.html";
 	}
@@ -92,7 +92,7 @@ public class UserController {
 	 * @param model 
 	 * @return 表示画面
 	 */
-	@GetMapping("/mountain/user-mypage")
+	@GetMapping("/user-mypage")
 	public String login(@AuthenticationPrincipal UserDetailsImpl user,Model model) {
 		return "mtUsers/mypage.html";
 	}
@@ -105,7 +105,7 @@ public class UserController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/mountain/user-update")
+	@GetMapping("/user-update")
 	public String login(@AuthenticationPrincipal UserDetailsImpl user,UpdateForm updateForm, Model model) {
 		MtUser mtUser = service.getUserByUsername(user.getUsername());
 		model.addAttribute("mtUser",mtUser);
@@ -114,19 +114,19 @@ public class UserController {
 	
 	
 	
-	@PostMapping(value="/mountain/user-update{id}",params="next")
+	@PostMapping(value="/user-update{id}",params="next")
 	public String update(@Validated UpdateForm updateForm,BindingResult result,Model model) {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
 			return "mtUsers/register.html";
 		}else if(service.userCheck(updateForm.getUsername())){
 			model.addAttribute("signupError","ユーザー名がすでに使用されています");
-			return "mtUsers/register.html";
+			return "mtUsers/user-update.html";
 		}
 		return "mtUsers/confirm.html";
 	}
 	
-	@PostMapping(value="/mountain/user-update{id}",params="save")
+	@PostMapping(value="/user-update{id}",params="save")
 	public String update(UpdateForm updateForm,Model model) {
 		service.updateUser(updateForm);
 		return "redirect:/mountain";
