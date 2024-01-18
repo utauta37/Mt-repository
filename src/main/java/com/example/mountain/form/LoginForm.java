@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 public class LoginForm implements Serializable{
 	
-	/** メールアドレス */
+	/** ユーザー名 */
 	@Size(max = 256,min = 6)
 	@NotBlank
 	private String username;
