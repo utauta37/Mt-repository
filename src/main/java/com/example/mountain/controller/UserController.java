@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.mountain.authentication.UserDetailsImpl;
+import com.example.mountain.entity.MtUser;
 import com.example.mountain.form.LoginForm;
 import com.example.mountain.form.SignupForm;
 import com.example.mountain.form.UpdateForm;
@@ -56,7 +57,7 @@ public class UserController {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
 			return "mtUsers/register.html";
-		}else if(service.userCheck(signupForm)){
+		}else if(service.userCheck(signupForm.getUsername())){
 			model.addAttribute("signupError","ユーザー名がすでに使用されています");
 			return "mtUsers/register.html";
 		}
@@ -105,26 +106,28 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping("/mountain/user-update")
-	public String updateView(@AuthenticationPrincipal UserDetailsImpl user,UpdateForm updateForm,Model model) {
+	public String login(@AuthenticationPrincipal UserDetailsImpl user,UpdateForm updateForm, Model model) {
+		MtUser mtUser = service.getUserByUsername(user.getUsername());
+		model.addAttribute("mtUser",mtUser);
 		return "mtUsers/update.html";
 	}
 	
-	@PostMapping(value="/mountain/user-update",params="next")
+	
+	
+	@PostMapping(value="/mountain/user-update{id}",params="next")
 	public String update(@Validated UpdateForm updateForm,BindingResult result,Model model) {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
 			return "mtUsers/register.html";
-		//TODO　signupFormでuserCheckメソッドをつくっているのでそのまま使えない…
-		}else if(service.userCheck(updateForm)){
+		}else if(service.userCheck(updateForm.getUsername())){
 			model.addAttribute("signupError","ユーザー名がすでに使用されています");
 			return "mtUsers/register.html";
 		}
 		return "mtUsers/confirm.html";
 	}
 	
-	@PostMapping(value="/mountain/user-update",params="save")
+	@PostMapping(value="/mountain/user-update{id}",params="save")
 	public String update(UpdateForm updateForm,Model model) {
-		//TODO　別でServiceつくるしかない？？？
 		service.updateUser(updateForm);
 		return "redirect:/mountain";
 	}

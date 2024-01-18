@@ -31,15 +31,17 @@
 				
 				<li>パスワード：</li>
 			</ul>
+			
 		</div>
 		
 		<div>
 			<p>ユーザー情報の変更</p>
-			<form th:action="@{/mountain/user-update}" method="post" th:object="${updateForm}">
+			<form th:action="@{/mountain/user-update{id}(id=${mtUser.id})}" method="post" th:object="${updateForm}">
 			
 			<div>
 				<label>ニックネーム（10文字以内）</label>
-				<input type="text" th:field="*{username}">
+				<!-- fieldに値が入っているとvalueは効かないらしい -->
+				<input type="text" th:field="*{username}" value="${mtUser.username}">
 			</div>
 			<div>
 				<label>パスワード</label>

@@ -19,6 +19,6 @@ public interface UserMapper {
 	
 	public MtUser selectUser(SignupForm signupForm);
 	
-	public MtUser updateUser(UpdateForm updateForm);
+	void updateUser(UpdateForm updateForm);
 	
 }

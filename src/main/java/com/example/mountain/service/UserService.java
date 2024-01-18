@@ -27,10 +27,10 @@ public class UserService {
 	
 	
 	
-	public boolean userCheck(SignupForm signupForm){
+	public boolean userCheck(String username){
 		// 二重登録のチェック
 		
-		if(mapper.findByUsername(signupForm.getUsername()) != null) {
+		if(mapper.findByUsername(username) != null) {
 			return true;
 		}
 		return false;
@@ -61,7 +61,7 @@ public class UserService {
 	
 	//TODO 
 	public void updateUser(UpdateForm updateForm) {
-		//パスワードをハッシュ化して、insertUser()に渡すオブジェクトにセット。
+		//パスワードをハッシュ化して、updatetUser()に渡すオブジェクトにセット。
 		updateForm.setPassword(passwordEncoder.encode(updateForm.getPassword()));
 		mapper.updateUser(updateForm);	
 	}
