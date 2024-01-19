@@ -8,7 +8,7 @@ import lombok.Data;
  * 
  */
 @Data
-public class MtUser {
+public class Account {
 	
 	private int id;
 

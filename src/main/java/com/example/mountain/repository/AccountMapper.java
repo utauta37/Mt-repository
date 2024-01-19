@@ -2,7 +2,7 @@ package com.example.mountain.repository;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.mountain.entity.MtUser;
+import com.example.mountain.entity.Account;
 import com.example.mountain.form.SignupForm;
 import com.example.mountain.form.UpdateForm;
 
@@ -11,13 +11,13 @@ import com.example.mountain.form.UpdateForm;
  * @author mina
  */
 @Mapper
-public interface UserMapper {
+public interface AccountMapper {
 
 	void insertUser(SignupForm signupForm);
 	
-	public MtUser findByUsername(String username);
+	public Account findByUsername(String username);
 	
-	public MtUser selectUser(SignupForm signupForm);
+	public Account selectUser(SignupForm signupForm);
 	
 	void updateUser(UpdateForm updateForm);
 	

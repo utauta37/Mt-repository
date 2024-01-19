@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.mountain.authentication.UserDetailsImpl;
-import com.example.mountain.entity.MtUser;
+import com.example.mountain.entity.Account;
 import com.example.mountain.form.LoginForm;
 import com.example.mountain.form.SignupForm;
 import com.example.mountain.form.UpdateForm;
-import com.example.mountain.service.UserService;
+import com.example.mountain.service.AccountService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,10 +26,10 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/")
-public class UserController {
+public class AccountController {
 	
 	/** ユーザー情報service */
-	private final UserService service;
+	private final AccountService service;
 	
 	
 	/** 
@@ -107,8 +107,8 @@ public class UserController {
 	 */
 	@GetMapping("/user-update")
 	public String login(@AuthenticationPrincipal UserDetailsImpl user,UpdateForm updateForm, Model model) {
-		MtUser mtUser = service.getUserByUsername(user.getUsername());
-		model.addAttribute("mtUser",mtUser);
+		Account account = service.getUserByUsername(user.getUsername());
+		model.addAttribute("mtUser",account);
 		return "mtUsers/update.html";
 	}
 	

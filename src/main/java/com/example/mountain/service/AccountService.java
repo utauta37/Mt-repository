@@ -4,10 +4,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.mountain.entity.MtUser;
+import com.example.mountain.entity.Account;
 import com.example.mountain.form.SignupForm;
 import com.example.mountain.form.UpdateForm;
-import com.example.mountain.repository.UserMapper;
+import com.example.mountain.repository.AccountMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,10 +17,10 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class AccountService {
 	
 	/** ユーザー情報テーブルDAO */
-	private final UserMapper mapper;
+	private final AccountMapper mapper;
 	
 	/** PasswordEncoder */
 	private final PasswordEncoder passwordEncoder;
@@ -55,7 +55,7 @@ public class UserService {
 	 * @param loginForm 
 	 * @return 検索結果
 	 */
-	public MtUser getUserByUsername(String username){
+	public Account getUserByUsername(String username){
 		return mapper.findByUsername(username);
 	}
 	
