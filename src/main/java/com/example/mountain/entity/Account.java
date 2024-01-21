@@ -8,8 +8,9 @@ import lombok.Data;
  * 
  */
 @Data
-public class MtUser {
+public class Account {
 	
+	/** ユーザーid */
 	private int id;
 
 	/** ユーザー名 */

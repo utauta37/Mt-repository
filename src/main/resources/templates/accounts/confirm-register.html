@@ -15,32 +15,26 @@
 		<header id="header" class="container">
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
-				<li><form th:action="@{/logout}" method="post">
-					<input type="submit" name="logout" value="ログアウト">
-				</form></li>
+				<li><a th:href="@{/signup}">新規登録</a></li>
+				<li><a th:href="@{/login}">ログイン</a></li>
 			</ul>
 		</header>
 		
-		<h2>マイページ</h2>
+		<h2>入力内容の確認</h2>
 		
-		<div>
-			<h3>こんにちは、<span sec:authentication="principal.username"></span>さん！</h3>
-		</div>
+			<form th:action="@{/signup}" method="post" th:object="${signupForm}">
+					<p th:text="'ユーザー名：' + *{username}"></p>
+					<input type="hidden" th:field="*{username}">
+					<p th:text="'パスワード：' + *{password}"></p>
+					<input type="hidden" th:field="*{password}">
+					
+				<div>
+					<input type="submit" name="save" value="登録">
+				</div>
+			</form>
+			<a th:href="@{/login}">すでにユーザー登録済の方はこちら</a>		
+
 		
-		<div>
-			<p>レビュー一覧</p>
-		</div>
-		
-		<div>
-			<p>ユーザー情報の変更はこちら</p>
-			
-					<a th:href="@{/mountain/user-update}">変更</a>
-			
-		</div>
-		
-		
-			
-			
 	</main>
 </body>
 </html>

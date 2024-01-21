@@ -26,7 +26,7 @@ public class WebSecurityConfig {
 				//ログイン画面のURL
 				.loginPage("/login")
 				//ログイン成功後のリダイレクト先URL
-				.defaultSuccessUrl("/user-mypage")
+				.defaultSuccessUrl("/mypage")
 				//ログイン失敗後のリダイレクト先URL
 				.failureUrl("/login?error")
 				//ログイン画面は未認証でもアクセス可能

@@ -5,14 +5,14 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.mountain.entity.MtUser;
+import com.example.mountain.entity.Account;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 	
-	private final MtUser mtUser;
+	private final Account account;
 	
 
 	@Override
@@ -22,17 +22,17 @@ public class UserDetailsImpl implements UserDetails {
 	}
 	
 	public int GetId() {
-		return mtUser.getId();
+		return account.getId();
 	}
 	
 	@Override
 	public String getPassword() {
-		return mtUser.getPassword();
+		return account.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		return mtUser.getUsername();
+		return account.getUsername();
 	}
 
 	@Override

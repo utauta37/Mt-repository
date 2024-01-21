@@ -3,10 +3,10 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
      
-<mapper namespace="com.example.mountain.repository.UserMapper">
+<mapper namespace="com.example.mountain.repository.AccountMapper">
 
 	<insert id="insertUser">
-		INSERT INTO mt_users(
+		INSERT INTO accounts(
 			username,
 			password)
 		VALUES(
@@ -14,29 +14,35 @@
 			#{password})
 	</insert>
 	
-	<select id="findByUsername" resultType="com.example.mountain.entity.MtUser">
-		SELECT * FROM mt_users 
+	<select id="findByUsername" resultType="com.example.mountain.entity.Account">
+		SELECT * FROM accounts 
 		WHERE 
 			username = #{username}
 	</select>
 	
 	<update id="deleteUser">
-		UPDATE mt_users 
+		UPDATE accounts 
 		SET
 			deleted_at = now()
 		WHERE 
 			username = #{username}
 	</update>	
 	
-	<update id="updateUser">
-		UPDATE mt_users 
+	<update id="updateUsername">
+		UPDATE accounts 
 		SET
-			username = #{username},
-			password = #{password}
+			username = #{username}	
 		WHERE 
 			id = #{id}
 	</update>
 	
+	<update id="updatePassword">
+		UPDATE accounts 
+		SET
+			password = #{password}	
+		WHERE 
+			id = #{id}
+	</update>
 	
 	
 </mapper>

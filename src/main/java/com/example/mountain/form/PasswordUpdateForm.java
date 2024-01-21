@@ -1,16 +1,14 @@
 package com.example.mountain.form;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class UpdateForm {
+public class PasswordUpdateForm {
 	
-	private int id;
-
-	@Size(min = 1,max = 50, message="名前は１文字以上です")
-	private String username;
-
+	
 	@Size(min = 8,max = 128, message="パスワードは8文字以上です")
+	@NotBlank
 	private String password;
 }
