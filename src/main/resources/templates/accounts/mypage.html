@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>どのやまのぼる？～関東編～</title>
+	<meta name="description" content="楽しい山登り。明日はどの山登る？">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="icon" href="../public/img/favicon.ico">
+	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
+	<link th:href="@{/css/top.css}" rel="stylesheet" />
+</head>
+<body>
+	<main>
+    	<!-- header -->
+		<header id="header" class="container">
+			<h1 class="site-title">どのやまのぼる？</h1>
+			<ul>
+				<li><form th:action="@{/logout}" method="post">
+					<input type="submit" name="logout" value="ログアウト">
+				</form></li>
+			</ul>
+		</header>
+		
+		<h2>マイページ</h2>
+		<div>
+			<h3>こんにちは、<span  th:text="${#authentication.principal.username}"></span>さん！</h3>
+		</div>
+		
+		<div>
+			<p>レビュー一覧</p>
+		</div>
+		
+		<div>
+			<p>ユーザー情報の変更はこちら</p>
+			
+					<a th:href="@{/update}">変更</a>
+			
+		</div>
+		
+		
+			
+			
+	</main>
+</body>
+</html>

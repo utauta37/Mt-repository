@@ -4,9 +4,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.mountain.authentication.UserDetailsImpl;
 import com.example.mountain.entity.Account;
+import com.example.mountain.form.PasswordUpdateForm;
 import com.example.mountain.form.SignupForm;
-import com.example.mountain.form.UpdateForm;
+import com.example.mountain.form.UsernameUpdateForm;
 import com.example.mountain.repository.AccountMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -59,11 +61,26 @@ public class AccountService {
 		return mapper.findByUsername(username);
 	}
 	
-	//TODO 
-	public void updateUser(UpdateForm updateForm) {
+	/**
+	 * ユーザー名変更
+	 * 
+	 * @param usernameUpdateForm　新ユーザー名
+	 */
+	public void updateUsername(UserDetailsImpl user,UsernameUpdateForm usernameUpdateForm) {
+		int id = user.GetId();
+		String username = usernameUpdateForm.getUsername();
+		mapper.updateUsername(id,username);
+	}
+	
+	/**
+	 * パスワード変更
+	 * 
+	 * @param passwordUpdateForm　新パスワード
+	 */
+	public void updatePassword(PasswordUpdateForm passwordUpdateForm) {
 		//パスワードをハッシュ化して、updatetUser()に渡すオブジェクトにセット。
-		updateForm.setPassword(passwordEncoder.encode(updateForm.getPassword()));
-		mapper.updateUser(updateForm);	
+		passwordUpdateForm.setPassword(passwordEncoder.encode(passwordUpdateForm.getPassword()));
+		mapper.updatePassword(passwordUpdateForm);	
 	}
 
 }

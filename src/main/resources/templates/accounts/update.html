@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>どのやまのぼる？～関東編～</title>
+	<meta name="description" content="楽しい山登り。明日はどの山登る？">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="icon" href="../public/img/favicon.ico">
+	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
+	<link th:href="@{/css/top.css}" rel="stylesheet" />
+</head>
+<body>
+	<main>
+    	<!-- header -->
+		<header id="header" class="container">
+			<h1 class="site-title">どのやまのぼる？</h1>
+			<ul>
+				<li><form th:action="@{/logout}" method="post">
+					<input type="submit" name="logout" value="ログアウト">
+				</form></li>
+			</ul>
+		</header>
+		
+		<h2>ユーザー情報の変更</h2>
+		
+		
+		<div>
+			<p>ユーザー情報</p>
+			<ul>
+				<li>ユーザー名：<span  th:text="${#authentication.principal.username}"></span></li>
+				
+				<li>パスワード：表示しません</li>
+			</ul>
+			
+		</div>
+		
+		<div>
+			<p>ユーザー情報の変更</p>
+			
+			<form th:action="@{/update}" method="post" th:object="${usernameUpdateForm}">
+				
+				<div>
+					<ul>
+			            <li th:each="error : ${#fields.detailedErrors()}" style="color: red">
+			                <span th:text="${error.message}"></span>
+			            </li>
+		        	</ul>
+					<div th:if="${updateError}">
+						<p th:text="${updateError}"></p>
+					</div>
+					<label>ユーザー名（10文字以内）</label>
+					<input type="text" th:field="*{username}">
+					<input type="submit" name="next" value="確認">
+				</div>
+			</form>
+			
+			<!--<form th:action="@{/update}" method="post" th:object="${passwordUpdateForm}">
+				
+				<div>
+					<ul>
+			            <li th:each="error : ${#fields.detailedErrors()}" style="color: red">
+			                <span th:text="${error.message}"></span>
+			            </li>
+		        	</ul>
+					<div th:if="${updateError}">
+						<p th:text="${updateError}"></p>
+					</div>
+					<label>パスワード（8文字以上）</label>
+					<input type="text" th:field="*{password}">
+					<input type="submit" name="next" value="確認">
+				</div>
+			</form>-->
+		</div>
+			
+			
+	</main>
+</body>
+</html>

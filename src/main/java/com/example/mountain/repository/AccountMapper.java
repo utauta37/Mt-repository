@@ -3,8 +3,8 @@ package com.example.mountain.repository;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.mountain.entity.Account;
+import com.example.mountain.form.PasswordUpdateForm;
 import com.example.mountain.form.SignupForm;
-import com.example.mountain.form.UpdateForm;
 
 /** ユーザー情報Mapper
  * 
@@ -17,8 +17,8 @@ public interface AccountMapper {
 	
 	public Account findByUsername(String username);
 	
-	public Account selectUser(SignupForm signupForm);
+	void updateUsername(int id,String username);
 	
-	void updateUser(UpdateForm updateForm);
+	void updatePassword(PasswordUpdateForm passwordUpdateForm);
 	
 }

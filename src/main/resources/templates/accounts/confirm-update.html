@@ -15,33 +15,19 @@
 		<header id="header" class="container">
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
-				<li><a th:href="@{/mountain/signup}">新規登録</a></li>
-				<li><a th:href="@{/mountain/login}">ログイン</a></li>
+				<li><a th:href="@{/signup}">新規登録</a></li>
+				<li><a th:href="@{/login}">ログイン</a></li>
 			</ul>
 		</header>
 		
 		<h2>入力内容の確認</h2>
 		
-		<div th:if="${signupForm}">
-			<form th:action="@{/mountain/signup}" method="post" th:object="${signupForm}">
+		<div th:if="${usernameUpdateForm}">
+			<form th:action="@{/update}" method="post" th:object="${usernameUpdateForm}">
 					<p th:text="'ユーザー名：' + *{username}"></p>
 					<input type="hidden" th:field="*{username}">
-					<p th:text="'パスワード：' + *{password}"></p>
-					<input type="hidden" th:field="*{password}">
-					
-				<div>
-					<input type="submit" name="save" value="登録">
-				</div>
-			</form>
-			<a th:href="@{/mountain/login}">すでにユーザー登録済の方はこちら</a>
-		</div>
-		
-		<div th:if="${updateForm}">
-			<form th:action="@{/mountain/user-update{id}(id=*{id})}" method="post" th:object="${updateForm}">
-					<p th:text="'ユーザー名：' + *{username}"></p>
-					<input type="hidden" th:field="*{username}">
-					<p th:text="'パスワード：' + *{password}"></p>
-					<input type="hidden" th:field="*{password}">
+					<!--<p th:text="'パスワード：' + *{password}"></p>
+					<input type="hidden" th:field="*{password}">-->
 					
 				<div>
 					<input type="submit" name="save" value="登録">

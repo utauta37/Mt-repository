@@ -15,33 +15,26 @@
 		<header id="header" class="container">
 			<h1 class="site-title">どのやまのぼる？</h1>
 			<ul>
-				<li><form th:action="@{/logout}" method="post">
-					<input type="submit" name="logout" value="ログアウト">
-				</form></li>
+				<li><a th:href="@{/signup}">新規登録</a></li>
+				<li><a th:href="@{/login}">ログイン</a></li>
 			</ul>
 		</header>
 		
-		<h2>ユーザー情報の変更</h2>
-		
-		
-		<div>
-			<p>ユーザー情報</p>
+		<h2>新規ユーザー登録</h2>
+		<p>新規ユーザー登録するには、ユーザー名とパスワードを入力してください</p>
+		<form th:action="@{/signup}" method="post" th:object="${signupForm}">
 			<ul>
-				<li>ユーザー名：<span sec:authentication="principal.username"></li>
-				
-				<li>パスワード：</li>
-			</ul>
-			
-		</div>
-		
-		<div>
-			<p>ユーザー情報の変更</p>
-			<form th:action="@{/mountain/user-update{id}(id=${mtUser.id})}" method="post" th:object="${updateForm}">
-			
+	            <li th:each="error : ${#fields.detailedErrors()}" style="color: red">
+	                <span th:text="${error.message}"></span>
+	            </li>
+        	</ul>
+			<div th:if="${signupError}">
+				<p th:text="${signupError}"></p>
+			</div>
+        
 			<div>
 				<label>ニックネーム（10文字以内）</label>
-				<!-- fieldに値が入っているとvalueは効かないらしい -->
-				<input type="text" th:field="*{username}" th:value="${mtUser.username}">
+				<input type="text" th:field="*{username}">
 			</div>
 			<div>
 				<label>パスワード</label>
@@ -51,9 +44,8 @@
 				<input type="submit" name="next" value="確認">
 			</div>
 		</form>
-		</div>
-			
-			
+		
+		<a th:href="@{/login}">すでにユーザー登録済の方はこちら</a>
 	</main>
 </body>
 </html>

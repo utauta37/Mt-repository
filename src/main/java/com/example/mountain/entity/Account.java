@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class Account {
 	
+	/** ユーザーid */
 	private int id;
 
 	/** ユーザー名 */

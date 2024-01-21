@@ -28,15 +28,21 @@
 			username = #{username}
 	</update>	
 	
-	<update id="updateUser">
+	<update id="updateUsername">
 		UPDATE accounts 
 		SET
-			username = #{username},
-			password = #{password}
+			username = #{username}	
 		WHERE 
 			id = #{id}
 	</update>
 	
+	<update id="updatePassword">
+		UPDATE accounts 
+		SET
+			password = #{password}	
+		WHERE 
+			id = #{id}
+	</update>
 	
 	
 </mapper>
