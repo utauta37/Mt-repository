@@ -25,19 +25,9 @@
 		
 		
 		<div>
-			<p>ユーザー情報</p>
-			<ul>
-				<li>ユーザー名：<span  th:text="${#authentication.principal.username}"></span></li>
-				
-				<li>パスワード：表示しません</li>
-			</ul>
+			<p>ユーザー名の変更</p>
 			
-		</div>
-		
-		<div>
-			<p>ユーザー情報の変更</p>
-			
-			<form th:action="@{/update}" method="post" th:object="${usernameUpdateForm}">
+			<form th:action="@{/update/username}" method="post" th:object="${usernameUpdateForm}">
 				
 				<div>
 					<ul>
@@ -54,22 +44,6 @@
 				</div>
 			</form>
 			
-			<!--<form th:action="@{/update}" method="post" th:object="${passwordUpdateForm}">
-				
-				<div>
-					<ul>
-			            <li th:each="error : ${#fields.detailedErrors()}" style="color: red">
-			                <span th:text="${error.message}"></span>
-			            </li>
-		        	</ul>
-					<div th:if="${updateError}">
-						<p th:text="${updateError}"></p>
-					</div>
-					<label>パスワード（8文字以上）</label>
-					<input type="text" th:field="*{password}">
-					<input type="submit" name="next" value="確認">
-				</div>
-			</form>-->
 		</div>
 			
 			

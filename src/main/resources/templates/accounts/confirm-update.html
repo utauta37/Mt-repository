@@ -23,11 +23,20 @@
 		<h2>入力内容の確認</h2>
 		
 		<div th:if="${usernameUpdateForm}">
-			<form th:action="@{/update}" method="post" th:object="${usernameUpdateForm}">
+			<form th:action="@{/update/username}" method="post" th:object="${usernameUpdateForm}">
 					<p th:text="'ユーザー名：' + *{username}"></p>
-					<input type="hidden" th:field="*{username}">
-					<!--<p th:text="'パスワード：' + *{password}"></p>
-					<input type="hidden" th:field="*{password}">-->
+					<input type="hidden" th:field="*{username}">	
+				<div>
+					<input type="submit" name="save" value="登録">
+				</div>
+			</form>
+		</div>
+		
+		<div th:if="${passwordUpdateForm}">
+			<form th:action="@{/update/password}" method="post" th:object="${passwordUpdateForm}">
+					
+					<p th:text="'パスワード：' + *{password}"></p>
+					<input type="hidden" th:field="*{password}">
 					
 				<div>
 					<input type="submit" name="save" value="登録">

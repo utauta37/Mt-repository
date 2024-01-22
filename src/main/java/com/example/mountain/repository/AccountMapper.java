@@ -3,7 +3,6 @@ package com.example.mountain.repository;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.mountain.entity.Account;
-import com.example.mountain.form.PasswordUpdateForm;
 import com.example.mountain.form.SignupForm;
 
 /** ユーザー情報Mapper
@@ -19,6 +18,6 @@ public interface AccountMapper {
 	
 	void updateUsername(int id,String username);
 	
-	void updatePassword(PasswordUpdateForm passwordUpdateForm);
+	void updatePassword(int id,String password);
 	
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.mountain.authentication.UserDetailsImpl;
 import com.example.mountain.form.LoginForm;
+import com.example.mountain.form.PasswordUpdateForm;
 import com.example.mountain.form.SignupForm;
 import com.example.mountain.form.UsernameUpdateForm;
 import com.example.mountain.service.AccountService;
@@ -98,34 +99,94 @@ public class AccountController {
 	
 	
 	/**
-	 * ユーザー情報変更画面
+	 * ユーザー名変更画面
 	 * 
 	 * @param user 認証情報
+	 * @param usernameUpdateForm
 	 * @param model
 	 * @return 表示画面
 	 */
-	@GetMapping("/update")
-	public String updateView(@AuthenticationPrincipal UserDetailsImpl user,UsernameUpdateForm usernameUpdateForm, Model model) {
-		return "accounts/update";
+	@GetMapping("/update/username")
+	public String updateView(@AuthenticationPrincipal UserDetailsImpl user,UsernameUpdateForm usernameUpdateForm,Model model) {
+		return "accounts/update-username";
 	}
 	
 	
-	//名前の変更
-	@PostMapping(value="/update",params="next")
+	/**
+	 * ユーザー名変更（確認）
+	 * 
+	 * @param usernameUpdateForm　入力情報
+	 * @param result　バリデーションの結果
+	 * @param model
+	 * @return　確認画面または入力画面へのパス
+	 */
+	@PostMapping(value="/update/username",params="next")
 	public String updateUsername(@Validated UsernameUpdateForm usernameUpdateForm,BindingResult result,Model model) {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
-			return "accounts/update";
+			return "accounts/update-username";
 		}else if(service.userCheck(usernameUpdateForm.getUsername())){
 			model.addAttribute("updateError","ユーザー名がすでに使用されています");
-			return "accounts/update";
+			return "accounts/update-username";
 		}
 		return "accounts/confirm-update";
 	}
 	
-	@PostMapping(value="/update",params="save")
+	/**
+	 * ユーザー名変更（実行）
+	 * 
+	 * @param user　認証情報
+	 * @param usernameUpdateForm　入力情報
+	 * @param model
+	 * @return　表示画面リダイレクト
+	 */
+	@PostMapping(value="/update/username",params="save")
 	public String updateUsename(@AuthenticationPrincipal UserDetailsImpl user,UsernameUpdateForm usernameUpdateForm,Model model) {
 		service.updateUsername(user,usernameUpdateForm);
+		return "redirect:/mountain";
+	}
+	
+	
+	
+	/**
+	 * パスワード変更画面
+	 * 
+	 * @param user　認証情報
+	 * @param passwordUpdateForm　入力情報
+	 * @param model
+	 * @return　表示画面
+	 */
+	@GetMapping("/update/password")
+	public String updateView(@AuthenticationPrincipal UserDetailsImpl user,PasswordUpdateForm passwordUpdateForm,Model model) {
+		return "accounts/update-password";
+	}
+	
+	/**
+	 * パスワード変更（確認）
+	 * 
+	 * @param passwordUpdateForm　入力情報
+	 * @param result　バリデーションの結果
+	 * @param model
+	 * @return　確認画面または入力画面へのパス
+	 */
+	@PostMapping(value="/update/password",params="next")
+	public String updatePassword(@Validated PasswordUpdateForm passwordUpdateForm,BindingResult result,Model model) {
+		if(result.hasErrors()) {
+			return "accounts/update-password";
+		}return "accounts/confirm-update";
+	}
+	
+	/**
+	 * パスワード変更（実行）
+	 * 
+	 * @param user　認証情報
+	 * @param passwordUpdateForm　入力情報
+	 * @param model
+	 * @return　表示画面リダイレクト
+	 */
+	@PostMapping(value="/update/password",params="save")
+	public String updatePassword(@AuthenticationPrincipal UserDetailsImpl user,PasswordUpdateForm passwordUpdateForm,Model model) {
+		service. updatePassword(user,passwordUpdateForm);
 		return "redirect:/mountain";
 	}
 }
