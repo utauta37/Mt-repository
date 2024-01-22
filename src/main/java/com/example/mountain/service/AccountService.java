@@ -28,10 +28,13 @@ public class AccountService {
 	private final PasswordEncoder passwordEncoder;
 	
 	
-	
+	/**
+	 * 二重登録のチェック
+	 * 
+	 * @param username
+	 * @return　同じusernameが見つかればtrue、見つからなければfalse
+	 */
 	public boolean userCheck(String username){
-		// 二重登録のチェック
-		
 		if(mapper.findByUsername(username) != null) {
 			return true;
 		}
@@ -39,22 +42,22 @@ public class AccountService {
 	}
 	
 
-	/** ユーザー新規登録
+	/**
+	 * ユーザー新規登録
 	 * 
-	 * @param signupForm 入力情報
-	 * @throws Exception 
+	 * @param signupForm　入力情報
 	 */
 	@Transactional
 	public void createUser(SignupForm signupForm){
-		
 		//パスワードをハッシュ化して、insertUser()に渡すオブジェクトにセット。
 		signupForm.setPassword(passwordEncoder.encode(signupForm.getPassword()));
 		mapper.insertUser(signupForm);	
 	}
 	
+	
 	/** ユーザー情報テーブル 入力情報で検索
 	 * 
-	 * @param loginForm 
+	 * @param loginForm 入力情報
 	 * @return 検索結果
 	 */
 	public Account getUserByUsername(String username){
@@ -64,8 +67,10 @@ public class AccountService {
 	/**
 	 * ユーザー名変更
 	 * 
+	 * @param user　認証情報
 	 * @param usernameUpdateForm　新ユーザー名
 	 */
+	@Transactional
 	public void updateUsername(UserDetailsImpl user,UsernameUpdateForm usernameUpdateForm) {
 		int id = user.GetId();
 		String username = usernameUpdateForm.getUsername();
@@ -75,12 +80,15 @@ public class AccountService {
 	/**
 	 * パスワード変更
 	 * 
+	 * @param user　認証情報
 	 * @param passwordUpdateForm　新パスワード
 	 */
-	public void updatePassword(PasswordUpdateForm passwordUpdateForm) {
-		//パスワードをハッシュ化して、updatetUser()に渡すオブジェクトにセット。
-		passwordUpdateForm.setPassword(passwordEncoder.encode(passwordUpdateForm.getPassword()));
-		mapper.updatePassword(passwordUpdateForm);	
+	@Transactional
+	public void updatePassword(UserDetailsImpl user,PasswordUpdateForm passwordUpdateForm) {
+		int id = user.GetId();
+		//パスワードをハッシュ化
+		String password = passwordEncoder.encode(passwordUpdateForm.getPassword());
+		mapper.updatePassword(id,password);	
 	}
 
 }
