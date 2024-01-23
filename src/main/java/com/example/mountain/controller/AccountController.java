@@ -189,4 +189,10 @@ public class AccountController {
 		service. updatePassword(user,passwordUpdateForm);
 		return "redirect:/mountain";
 	}
+	
+	@PostMapping(value="/user-delete",params="delete")
+	public String deleteUser(@AuthenticationPrincipal UserDetailsImpl user) {
+		service.deleteUser(user);
+		return "redirect:/mountain";
+	}
 }

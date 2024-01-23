@@ -41,9 +41,13 @@
 					<a th:href="@{/update/password}">変更</a>
 				</li>
 			</ul>
-			
-					
-			
+		</div>
+		
+		<div>
+			<p>ユーザー削除</p>
+			<form th:action="@{/user-delete}" method="post">
+				<button type="submit" name="delete">削除</button>
+			</form>
 		</div>
 		
 		

@@ -90,5 +90,16 @@ public class AccountService {
 		String password = passwordEncoder.encode(passwordUpdateForm.getPassword());
 		mapper.updatePassword(id,password);	
 	}
+	
+	/**
+	 * ユーザー削除
+	 * 
+	 * @param user 認証情報
+	 */
+	@Transactional
+	public void deleteUser(UserDetailsImpl user) {
+		int id = user.GetId();
+		mapper.deleteUser(id);
+	}
 
 }

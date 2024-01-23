@@ -20,14 +20,6 @@
 			username = #{username}
 	</select>
 	
-	<update id="deleteUser">
-		UPDATE accounts 
-		SET
-			deleted_at = now()
-		WHERE 
-			username = #{username}
-	</update>	
-	
 	<update id="updateUsername">
 		UPDATE accounts 
 		SET
@@ -43,6 +35,14 @@
 		WHERE 
 			id = #{id}
 	</update>
+	
+	<update id="deleteUser">
+		UPDATE accounts 
+		SET
+			deleted_at = now()
+		WHERE 
+			id = #{id}
+	</update>	
 	
 	
 </mapper>
