@@ -18,6 +18,8 @@
 		SELECT * FROM accounts 
 		WHERE 
 			username = #{username}
+			AND
+			deleted_at IS NULL
 	</select>
 	
 	<update id="updateUsername">

@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {	
 		Account account = mapper.findByUsername(username);
 		//情報が取得できなかった場合UsernameNotFoundExceptionでthrowsする
-		if(account == null || account.getDeletedAt() != null) {
+		if(account == null) {
 			throw new UsernameNotFoundException("User not found:" + username);
 		}
 		return (new UserDetailsImpl(account));
