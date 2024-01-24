@@ -20,4 +20,6 @@ public interface AccountMapper {
 	
 	void updatePassword(int id,String password);
 	
+	void deleteUser(int id);
+	
 }

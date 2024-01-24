@@ -17,14 +17,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	private final AccountMapper mapper;
 	
-	//private final PasswordEncoder passwordEncoder;
 
 	//selectUserで取得した情報を、UserDetailsインターフェースを実装するUserクラスに変換する
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {	
 		Account account = mapper.findByUsername(username);
 		//情報が取得できなかった場合UsernameNotFoundExceptionでthrowsする
-		if(account == null) {
+		if(account == null || account.getDeletedAt() != null) {
 			throw new UsernameNotFoundException("User not found:" + username);
 		}
 		return (new UserDetailsImpl(account));

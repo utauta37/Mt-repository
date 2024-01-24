@@ -1,5 +1,7 @@
 package com.example.mountain.entity;
 
+import java.sql.Timestamp;
+
 import lombok.Data;
 
 /** ユーザー情報テーブルEntity
@@ -18,4 +20,6 @@ public class Account {
 	
 	/** パスワード */
 	private String password;
+	
+	private Timestamp deletedAt;
 }
