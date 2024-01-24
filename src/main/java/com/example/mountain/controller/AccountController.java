@@ -190,6 +190,12 @@ public class AccountController {
 		return "redirect:/mountain";
 	}
 	
+	/**
+	 * ユーザー削除
+	 * 
+	 * @param user　認証情報
+	 * @return　表示画面リダイレクト
+	 */
 	@PostMapping(value="/user-delete",params="delete")
 	public String deleteUser(@AuthenticationPrincipal UserDetailsImpl user) {
 		service.deleteUser(user);

@@ -21,5 +21,5 @@ public class Account {
 	/** パスワード */
 	private String password;
 	
-	private Timestamp deleted_at;
+	private Timestamp deletedAt;
 }
