@@ -49,8 +49,13 @@
 				<dd th:text="*{station}"></dd>
 			</dl>
 
-		</div>
 		
+			
+			<div>
+				<h2>この山に関するレビュー</h2>
+				<a th:href="@{/mountain/review-create{id}(id = *{id})}">レビューを投稿する</a>
+			</div>
+		</div>
 	</main>
 </body>
 </html>

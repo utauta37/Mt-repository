@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class MountainService{
 	
 	/** MountainMapper */
-	private final MountainMapper mountainMapper;
+	private final MountainMapper mapper;
 	
 	
 	/**
@@ -29,7 +29,7 @@ public class MountainService{
 	 * @return ランダム取得の結果
 	 */
 	public Mountain showOne(){
-		return mountainMapper.showOne();
+		return mapper.showOne();
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class MountainService{
 	 * @return 全件取得
 	 */
 	public List<Mountain> showAll(){
-		return mountainMapper.showAll();
+		return mapper.showAll();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class MountainService{
 	 * @return prefectureによって取得
 	 */
 	public List<Mountain> selectPref(String prefecture){
-		return mountainMapper.selectPref(prefecture);
+		return mapper.selectPref(prefecture);
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class MountainService{
 	 * @return 二択で分岐
 	 */
 	public List<Mountain> selectTime(String time){
-		return mountainMapper.selectTime(time);
+		return mapper.selectTime(time);
 	}
 	
 	/**
@@ -68,7 +68,7 @@ public class MountainService{
 	 * @return feelingによって取得
 	 */
 	public List<Mountain> selectFeel(String feeling){
-		return mountainMapper.selectFeel(feeling);
+		return mapper.selectFeel(feeling);
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class MountainService{
 	 * @return idによって取得
 	 */
 	public Mountain findById(String id){
-		return mountainMapper.findById(id);
+		return mapper.findById(id);
 	}
 }
 
