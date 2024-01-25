@@ -2,9 +2,10 @@ package com.example.mountain.entity;
 
 import lombok.Data;
 
-/*
- * mountainssテーブルから取得したデータを保管
- * 各カラム名に対応
+/**
+ * 山の情報テーブルEntity
+ * 
+ * @author mina
  */
 
 @Data

@@ -125,7 +125,8 @@ public class AccountController {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
 			return "accounts/update-username";
-		}else if(service.userCheck(usernameUpdateForm.getUsername())){
+		}
+		if(service.userCheck(usernameUpdateForm.getUsername())){
 			model.addAttribute("updateError","ユーザー名がすでに使用されています");
 			return "accounts/update-username";
 		}
