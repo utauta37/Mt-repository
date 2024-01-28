@@ -32,7 +32,6 @@ public class WebSecurityConfig {
 				//ログイン画面は未認証でもアクセス可能
 				.permitAll()
 		).logout(logout -> logout
-				//.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/mountain")
 				.invalidateHttpSession(true)
 		).authorizeHttpRequests(authz -> authz

@@ -10,8 +10,9 @@ import lombok.Data;
  * @author mina
  */
 @Data
-public class ReviewEntity {
+public class Review {
 
+	//レビューの内容
 	private int id;
 	private String title;
 	private String body;
@@ -19,4 +20,11 @@ public class ReviewEntity {
 	private Date deletedAt;
 	private int mountainId;
 	private int accountId;
+	
+	//レビューを作成したユーザー名
+	private String username;
+	
+	//レビュー対象の山の名前
+	private String name;
+	
 }

@@ -1,9 +1,12 @@
 package com.example.mountain.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mountain.authentication.UserDetailsImpl;
+import com.example.mountain.entity.Review;
 import com.example.mountain.form.ReviewCreateForm;
 import com.example.mountain.repository.ReviewMapper;
 
@@ -36,4 +39,29 @@ public class ReviewService {
 		mapper.insertReview(accountId,mountainId,title,body);
 	}
 
+	/**
+	 * 山詳細ページにレビュー表示
+	 * 
+	 * @param mountainId　山id
+	 * @return　取得したレビュー一覧
+	 */
+	public List<Review> selectReview(int mountainId) {
+		return mapper.selectByMountainId(mountainId);
+	}
+	
+	/**
+	 * マイページにレビュー表示
+	 * 
+	 * @param user　認証情報
+	 * @return　取得したレビュー一覧
+	 */
+	public  List<Review> selectUserReview(UserDetailsImpl user){
+		int accountId = user.GetId();
+		return mapper.selectByAccountId(accountId);
+	}
+	
+	@Transactional
+	public void deleteReview(int reviewId) {
+		mapper.deleteByReviewId(reviewId);
+	}
 }

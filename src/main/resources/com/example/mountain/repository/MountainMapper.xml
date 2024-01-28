@@ -5,18 +5,22 @@
      
 <mapper namespace="com.example.mountain.repository.MountainMapper">
 
+	<!-- ランダムで一件取得 -->
 	<select id="showOne" resultType="com.example.mountain.entity.Mountain">
 		SELECT * FROM mountains ORDER BY RAND() LIMIT 1
 	</select>
 
+	<!-- すべてのデータを取得 -->
 	<select id="showAll" resultType="com.example.mountain.entity.Mountain">
 		SELECT * FROM mountains
 	</select>
 
+	<!-- 場所の名前が一致するデータを取得 -->
 	<select id="selectPref" parameterType="string" resultType="com.example.mountain.entity.Mountain">
 		SELECT * FROM mountains WHERE prefecture = #{prefecture}
 	</select>
 	
+	<!-- コースタイムの長短でデータを取得 -->
 	<select id="selectTime" resultType="com.example.mountain.entity.Mountain">
 		SELECT * FROM mountains
 		WHERE
@@ -29,6 +33,7 @@
 			</if>
 	</select>
 	
+	<!-- 気分のidが一致するデータを取得 -->
 	<select id="selectFeel" resultType="com.example.mountain.entity.Mountain">
 		SELECT * FROM mountains
 		INNER JOIN mt_feeling
@@ -38,6 +43,7 @@
 			ON mt_feeling.feeling_id = feeling.id
 	</select>
 	
+	<!-- 山のidが一致するデータを取得 -->
 	<select id="findById" resultType="com.example.mountain.entity.Mountain">
 		SELECT * FROM mountains WHERE id = #{id}
 	</select>
