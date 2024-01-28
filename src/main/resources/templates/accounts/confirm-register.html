@@ -13,7 +13,7 @@
 	<main>
     	<!-- header -->
 		<header id="header" class="container">
-			<h1 class="site-title">どのやまのぼる？</h1>
+			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
 			<ul>
 				<li><a th:href="@{/signup}">新規登録</a></li>
 				<li><a th:href="@{/login}">ログイン</a></li>
@@ -29,6 +29,7 @@
 					<input type="hidden" th:field="*{password}">
 					
 				<div>
+					<p>以上の内容でよろしければ登録ボタンを押してください</p>
 					<input type="submit" name="save" value="登録">
 				</div>
 			</form>

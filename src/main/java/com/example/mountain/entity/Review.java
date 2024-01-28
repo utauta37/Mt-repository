@@ -12,6 +12,7 @@ import lombok.Data;
 @Data
 public class Review {
 
+	//レビューの内容
 	private int id;
 	private String title;
 	private String body;
@@ -20,7 +21,10 @@ public class Review {
 	private int mountainId;
 	private int accountId;
 	
+	//レビューを作成したユーザー名
 	private String username;
-//	private List<Mountain> mountainList;
-//	private List<Account> accountList;
+	
+	//レビュー対象の山の名前
+	private String name;
+	
 }

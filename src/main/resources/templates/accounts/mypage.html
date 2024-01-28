@@ -13,7 +13,7 @@
 	<main>
     	<!-- header -->
 		<header id="header" class="container">
-			<h1 class="site-title">どのやまのぼる？</h1>
+			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
 			<ul>
 				<li><form th:action="@{/logout}" method="post">
 					<input type="submit" name="logout" value="ログアウト">
@@ -23,15 +23,29 @@
 		
 		<h2>マイページ</h2>
 		<div>
-			<h3>こんにちは、<span  th:text="${#authentication.principal.username}"></span>さん！</h3>
+			<h2>こんにちは、<span  th:text="${#authentication.principal.username}"></span>さん！</h2>
 		</div>
 		
 		<div>
-			<p>レビュー一覧</p>
+			<h3>レビュー一覧</h3>
+			<th:block th:each="review:${reviewList}">
+				<div th:object="${review}">
+					<a th:href="@{/mountain/show{id}(id=*{mountainId})}">
+						<h4 th:text="*{name}"></h4>
+					</a>
+					<h3 th:text="*{title}"></h3>
+					<p th:text="*{body}"></p>
+					<p th:text="*{#dates.format(createdAt,'YYYY年MM月DD日')}"></p>
+					<form th:action="@{/review-delete}" method="post">
+						<input type="hidden" name="id" th:value="*{id}">
+						<button type="submit" value="delete">削除</button>
+					</form>
+				</div>
+			</th:block>
 		</div>
 		
 		<div>
-			<p>ユーザー情報</p>
+			<h3>ユーザー情報</h3>
 			<ul>
 				<li>ユーザー名：<span  th:text="${#authentication.principal.username}"></span>
 					<a th:href="@{/update/username}">変更</a>

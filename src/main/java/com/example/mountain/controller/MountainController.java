@@ -135,9 +135,9 @@ public class MountainController {
 	 * @return　表示画面
 	 */
 	@GetMapping("/show{id}")
-	public String showView(@PathVariable("id") int id,Model model) {
-		Mountain mountain = mountainService.findById(id);
-		List<Review> reviewList = reviewService.selectReview(id);
+	public String showView(@PathVariable("id") int mountainId,Model model) {
+		Mountain mountain = mountainService.findById(mountainId);
+		List<Review> reviewList = reviewService.selectReview(mountainId);
 		model.addAttribute("mountain",mountain);
 		model.addAttribute("reviewList",reviewList);
 		return "mountains/show.html";

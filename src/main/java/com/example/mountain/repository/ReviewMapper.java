@@ -17,5 +17,9 @@ public interface ReviewMapper {
 	
 	void insertReview(@Param("accountId")int accountId,@Param("mountainId")int mountainId,@Param("title")String title,@Param("body")String body);
 
-	public List<Review> selectByMountainId(int id);
+	public List<Review> selectByMountainId(int mountainId);
+	
+	public List<Review> selectByAccountId(int accountId);
+	
+	void deleteByReviewId(int reviewId);
 }

@@ -14,7 +14,7 @@
 	<main>
     	<!-- header -->
 		<header id="header" class="container">
-			<h1 class="site-title">どのやまのぼる？</h1>
+			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
 			<ul>
 				<li><a th:href="@{/signup}">新規登録</a></li>
 				<li><a th:href="@{/login}">ログイン</a></li>
@@ -24,10 +24,7 @@
 
 		<div th:object="${mountain}">
 			
-			<!-- 山の名前 -->
 			<h2 th:text="*{name}"></h2>
-	
-			<!-- 山の情報 -->	
 			<p><!-- 改行コードの変換  -->
 			<th:block th:if="*{content}">
 				<!-- \r\nなどがきたら改行の繰り返し -->
@@ -61,7 +58,9 @@
 					</div>
 				</th:block>
 				
-				<a th:href="@{/mountain/review-create{id}(id = *{id})}">レビューを投稿する</a>
+				<a th:href="@{/mountain/review-create{id}(id = *{id})}">
+					レビューを投稿する
+				</a>
 			</div>
 			
 		</div>

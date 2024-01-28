@@ -26,8 +26,32 @@
 		SELECT * FROM reviews 
 		INNER JOIN mountains
 			ON reviews.mountain_id = mountains.id
-				AND mountains.id = #{id}
+				AND mountains.id = #{mountainId}
 		INNER JOIN accounts
 			ON reviews.account_id = accounts.id 
+		WHERE reviews.deleted_at IS NULL
+		ORDER BY created_at DESC
 	</select>
+	
+	<!-- 認証中のアカウントidでレビューと山のデータを取得 -->
+	<select id="selectByAccountId" resultType="com.example.mountain.entity.Review">
+		SELECT * FROM reviews
+		INNER JOIN accounts
+			ON reviews.account_id = accounts.id
+				AND accounts.id = #{accountId}
+		INNER JOIN mountains
+			ON reviews.mountain_id = mountains.id
+		WHERE reviews.deleted_at IS NULL
+		ORDER BY created_at DESC
+	</select>
+	
+	<!-- レビューの削除 -->
+	<update id="deleteByReviewId">
+		UPDATE reviews 
+		SET
+			deleted_at = CURRENT_DATE()
+		WHERE 
+			id = #{reviewId}
+	</update>
+	
 </mapper>

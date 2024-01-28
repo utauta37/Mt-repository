@@ -1,5 +1,7 @@
 package com.example.mountain.controller;
 
+import java.util.List;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,13 +10,16 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mountain.authentication.UserDetailsImpl;
+import com.example.mountain.entity.Review;
 import com.example.mountain.form.LoginForm;
 import com.example.mountain.form.PasswordUpdateForm;
 import com.example.mountain.form.SignupForm;
 import com.example.mountain.form.UsernameUpdateForm;
 import com.example.mountain.service.AccountService;
+import com.example.mountain.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +34,10 @@ import lombok.RequiredArgsConstructor;
 public class AccountController {
 	
 	/** ユーザー情報service */
-	private final AccountService service;
+	private final AccountService accountService;
+	
+	/** レビュー情報Service */
+	private final ReviewService reviewService;
 	
 	
 	/** 
@@ -57,7 +65,7 @@ public class AccountController {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
 			return "accounts/register";
-		}else if(service.userCheck(signupForm.getUsername())){
+		}else if(accountService.userCheck(signupForm.getUsername())){
 			model.addAttribute("signupError","ユーザー名がすでに使用されています");
 			return "accounts/register";
 		}
@@ -66,7 +74,7 @@ public class AccountController {
 	
 	@PostMapping(value="/signup",params="save")
 	public String register(SignupForm signupForm,Model model) {
-		service.createUser(signupForm);
+		accountService.createUser(signupForm);
 		return "redirect:/mountain";
 	}
 	
@@ -85,16 +93,24 @@ public class AccountController {
 		return "accounts/login";
 	}
 	
-
 	/**
-	 * ログイン
+	 * ログイン成功後画面
 	 * 
-	 * @param model 
-	 * @return 表示画面
+	 * @param user 認証情報
+	 * @param model
+	 * @return　表示画面
 	 */
 	@GetMapping("/mypage")
-	public String login(UserDetailsImpl user,Model model) {
+	public String loginSuccess(@AuthenticationPrincipal UserDetailsImpl user,Model model) {
+		List<Review> reviewList = reviewService.selectUserReview(user);
+		model.addAttribute("reviewList",reviewList);
 		return "accounts/mypage";
+	}
+	
+	@PostMapping("/review-delete")
+	public String deleteReview(@RequestParam("id")int reviewId) {
+		reviewService.deleteReview(reviewId);
+		return "redirect:/mypage";
 	}
 	
 	
@@ -126,11 +142,11 @@ public class AccountController {
 		if(result.hasErrors()) {
 			return "accounts/update-username";
 		}
-		if(service.userCheck(usernameUpdateForm.getUsername())){
+		if(accountService.userCheck(usernameUpdateForm.getUsername())){
 			model.addAttribute("updateError","ユーザー名がすでに使用されています");
 			return "accounts/update-username";
 		}
-		return "accounts/confirm-update";
+		return "accounts/confirm-username";
 	}
 	
 	/**
@@ -143,7 +159,7 @@ public class AccountController {
 	 */
 	@PostMapping(value="/update/username",params="save")
 	public String updateUsename(@AuthenticationPrincipal UserDetailsImpl user,UsernameUpdateForm usernameUpdateForm,Model model) {
-		service.updateUsername(user,usernameUpdateForm);
+		accountService.updateUsername(user,usernameUpdateForm);
 		return "redirect:/mountain";
 	}
 	
@@ -174,7 +190,7 @@ public class AccountController {
 	public String updatePassword(@Validated PasswordUpdateForm passwordUpdateForm,BindingResult result,Model model) {
 		if(result.hasErrors()) {
 			return "accounts/update-password";
-		}return "accounts/confirm-update";
+		}return "accounts/confirm-password";
 	}
 	
 	/**
@@ -187,7 +203,7 @@ public class AccountController {
 	 */
 	@PostMapping(value="/update/password",params="save")
 	public String updatePassword(@AuthenticationPrincipal UserDetailsImpl user,PasswordUpdateForm passwordUpdateForm,Model model) {
-		service. updatePassword(user,passwordUpdateForm);
+		accountService. updatePassword(user,passwordUpdateForm);
 		return "redirect:/mountain";
 	}
 	
@@ -199,7 +215,7 @@ public class AccountController {
 	 */
 	@PostMapping(value="/user-delete",params="delete")
 	public String deleteUser(@AuthenticationPrincipal UserDetailsImpl user) {
-		service.deleteUser(user);
+		accountService.deleteUser(user);
 		return "redirect:/mountain";
 	}
 }
