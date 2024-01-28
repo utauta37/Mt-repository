@@ -5,6 +5,7 @@
      
 <mapper namespace="com.example.mountain.repository.ReviewMapper">
 
+	<!-- レビュー作成 -->
 	<insert id="insertReview">
 		INSERT INTO reviews(
 			title,
@@ -20,5 +21,13 @@
 			#{accountId})
 	</insert>
 
-
+	<!-- 山idでレビューと投稿者のデータを取得 -->
+	<select id="selectByMountainId" resultType="com.example.mountain.entity.Review">
+		SELECT * FROM reviews 
+		INNER JOIN mountains
+			ON reviews.mountain_id = mountains.id
+				AND mountains.id = #{id}
+		INNER JOIN accounts
+			ON reviews.account_id = accounts.id 
+	</select>
 </mapper>

@@ -1,9 +1,12 @@
 package com.example.mountain.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mountain.authentication.UserDetailsImpl;
+import com.example.mountain.entity.Review;
 import com.example.mountain.form.ReviewCreateForm;
 import com.example.mountain.repository.ReviewMapper;
 
@@ -36,4 +39,7 @@ public class ReviewService {
 		mapper.insertReview(accountId,mountainId,title,body);
 	}
 
+	public List<Review> selectReview(int id) {
+		return mapper.selectByMountainId(id);
+	}
 }

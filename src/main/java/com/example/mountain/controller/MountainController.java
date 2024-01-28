@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mountain.authentication.UserDetailsImpl;
 import com.example.mountain.entity.Mountain;
+import com.example.mountain.entity.Review;
 import com.example.mountain.form.ReviewCreateForm;
 import com.example.mountain.service.MountainService;
 import com.example.mountain.service.ReviewService;
@@ -134,9 +135,11 @@ public class MountainController {
 	 * @return　表示画面
 	 */
 	@GetMapping("/show{id}")
-	public String showView(@PathVariable("id") String id,Model model) {
+	public String showView(@PathVariable("id") int id,Model model) {
 		Mountain mountain = mountainService.findById(id);
+		List<Review> reviewList = reviewService.selectReview(id);
 		model.addAttribute("mountain",mountain);
+		model.addAttribute("reviewList",reviewList);
 		return "mountains/show.html";
 	}
 	
@@ -150,7 +153,7 @@ public class MountainController {
 	 * @return　表示画面
 	 */
 	@GetMapping("/review-create{id}")
-	public String createReviewView(@AuthenticationPrincipal UserDetailsImpl user,ReviewCreateForm reviewCreateForm,@PathVariable("id")String id,Model model) {
+	public String createReviewView(@AuthenticationPrincipal UserDetailsImpl user,ReviewCreateForm reviewCreateForm,@PathVariable("id")int id,Model model) {
 		Mountain mountain = mountainService.findById(id);
 		model.addAttribute("id",mountain.getId());
 		return "mountains/create";

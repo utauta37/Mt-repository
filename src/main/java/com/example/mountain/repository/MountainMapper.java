@@ -31,5 +31,5 @@ public interface MountainMapper {
 	public List<Mountain> selectFeel(String feeling);
 	
 	//idにあったデータを一件取得
-	public Mountain findById(String id);
+	public Mountain findById(int id);
 }

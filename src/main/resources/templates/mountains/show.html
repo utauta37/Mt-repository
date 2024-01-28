@@ -48,13 +48,22 @@
 				<dt>最寄り駅</dt>
 				<dd th:text="*{station}"></dd>
 			</dl>
-
-		
 			
 			<div>
 				<h2>この山に関するレビュー</h2>
+				
+				<th:block th:each="review:${reviewList}">
+					<div th:object="${review}">
+						<h4 th:text="*{username}+'さん'"></h4>
+						<h3 th:text="*{title}"></h3>
+						<p th:text="*{body}"></p>
+						<p th:text="*{#dates.format(createdAt,'YYYY年MM月DD日')}"></p>
+					</div>
+				</th:block>
+				
 				<a th:href="@{/mountain/review-create{id}(id = *{id})}">レビューを投稿する</a>
 			</div>
+			
 		</div>
 	</main>
 </body>
