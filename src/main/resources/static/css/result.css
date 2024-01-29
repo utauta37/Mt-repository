@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "UTF-8";@charset "UTF-8";
 html {
 	font-size: 100%;
 }
@@ -28,13 +28,8 @@ li {
     text-align: center;
     margin: 0 auto 60px auto;
 }
-.section-title {
-	width: 90%;
-	font-size: 1.5rem;
-	text-align: center;
-	margin: 0 auto 60px auto;
-	border-bottom: 4px dotted #D0A900;
-}
+
+
 
 /*-------header-------*/
 #header {
@@ -64,42 +59,27 @@ li {
     color: #b0c4de;
 }
 
-/*-------mainvisual-------*/
-#mainvisual {
-	margin-bottom: 60px;
+/*-------山の情報-------*/
+#mountain-list .contents {
+	width: 90%;
+    border: 4px dotted #D0A900;
+    border-radius: 15px;
+    margin: 0 auto 10px auto;
+    padding: 20px;
 }
-#mainvisual img {
-    width: 100%;
-    max-width: 1920px;
-    height: 500px;
-    object-fit: cover;
-}
-
-/*-------各種リンクボタン-------*/
-.button {
-	width: 100%;
+#mountain-list .info {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	width: 100%;
 }
-.button a {
-	line-height: 60px;
+#mountain-list dt {
+  width: 30%;
 }
-.btn {
-	width: 20%;
-	height: 60px;
-    font-size: 0.9rem;
-    border: solid 1px #006036;
-    border-radius: 15px;
-    margin: 5px 10px;
+
+#mountain-list dd {
+  width: 70%;
 }
-.btn:hover {
-    color: #f5f5f5;
-    background: #006036;
-}
-.btn:active {
-    color:#b8ccb8;
-}
+
 
 /*-------footer-------*/
 #footer {
@@ -114,18 +94,7 @@ li {
 	html {
 		font-size: 0.6rem;
 	}
-	
-	.button {
-		flex-direction: column;
-	}
-
-	.btn {
-		width: 90%;
-	}
-	.btn:active {
-		background: #9bcc9b
-	}
-	
+		
 /*	-------header-------*/
 	#header {
 		flex-direction: column;
@@ -139,4 +108,14 @@ li {
 		margin-left: 0;
 	}
 	
+	#mountain-list .info {
+		flex-direction: column;
+	}
+	#mountain-list dt {
+		width: 100%;
+	}
+
+	#mountain-list dd {
+	  	width: 100%;
+	}
 }

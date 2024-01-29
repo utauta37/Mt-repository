@@ -14,7 +14,9 @@
 	<main>
     	<!-- header -->
 		<header id="header" class="wrapper">
-			<h1 class="site-title"><a th:href="@{/mountain}">どのやまのぼる？</a></h1>
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
 			<nav>
 				<ul>
 					<li><a th:href="@{/signup}">新規登録</a></li>
@@ -26,7 +28,7 @@
 
 		<!-- mainvisual -->
 		<div id="mainvisual">
-			<img th:src="@{/images/IMG_0869.JPG}" alt="トップ画像">
+			<img th:src="@{/images/top.JPG}" alt="トップ画像">
 		</div>
 
 		<!-- サイトの説明 -->
