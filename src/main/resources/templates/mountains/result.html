@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
 	 <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> 
-	<link th:href="@{/css/result.css}" rel="stylesheet" />
+	<link th:href="@{/css/mountains/result.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
@@ -25,7 +25,9 @@
 			</nav>
 		</header>
 		
-		<section id="mountain-list">
+		<section id="results" class="wrapper">
+			<h2 class="section-title">検索結果</h2>
+	
 			<th:block th:each="mountain:${mountainList}">
 				<div class="contents" th:object="${mountain}">
 					<a th:href="@{/mountain/show{id}(id = *{id})}">
@@ -43,8 +45,9 @@
 		</section>
 		
 		<!-- footer -->
-		<footer #id="footer" class="wrapper">
+		<footer id="footer">
 			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
 		</footer>
 	</main>
 
