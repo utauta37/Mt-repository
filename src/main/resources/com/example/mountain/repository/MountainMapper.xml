@@ -45,6 +45,6 @@
 	
 	<!-- 山のidが一致するデータを取得 -->
 	<select id="findById" resultType="com.example.mountain.entity.Mountain">
-		SELECT * FROM mountains WHERE id = #{id}
+		SELECT * FROM mountains WHERE id = #{mountainId}
 	</select>
 </mapper>

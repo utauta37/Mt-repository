@@ -82,7 +82,7 @@
 				<a class="btn" th:href="@{/mountain/review-create{id}(id = *{id})}">
 					すべてのレビューを見る
 				</a>
-				<a class="btn" th:href="@{/mountain/review-create{id}(id = *{id})}">
+				<a class="btn" th:href="@{/mountain/review-create{id}(id = ${mountain.id})}">
 					レビューを投稿する
 				</a>
 			</div>

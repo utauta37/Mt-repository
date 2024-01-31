@@ -153,8 +153,8 @@ public class MountainController {
 	 * @return　表示画面
 	 */
 	@GetMapping("/review-create{id}")
-	public String createReviewView(@AuthenticationPrincipal UserDetailsImpl user,ReviewCreateForm reviewCreateForm,@PathVariable("id")int id,Model model) {
-		Mountain mountain = mountainService.findById(id);
+	public String createReviewView(@AuthenticationPrincipal UserDetailsImpl user,ReviewCreateForm reviewCreateForm,@PathVariable("id")int mountainId,Model model) {
+		Mountain mountain = mountainService.findById(mountainId);
 		model.addAttribute("id",mountain.getId());
 		return "mountains/create";
 	}
