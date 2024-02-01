@@ -6,45 +6,58 @@
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<link th:href="@{/css/top.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> 
+	<link th:href="@{/css/accounts/account.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
     	<!-- header -->
-		<header id="header" class="container">
-			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
-			<ul>
-				<li><form th:action="@{/logout}" method="post">
-					<input type="submit" name="logout" value="ログアウト">
-				</form></li>
-			</ul>
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
+			<nav>
+				<ul>
+					<li>
+						<form th:action="@{/logout}" method="post">
+							<input type="submit" name="logout" value="ログアウト">
+						</form>
+					</li>
+					<li><a th:href="@{/mypage}">マイページ</a></li>
+					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+				</ul>
+			</nav>
 		</header>
 		
-		<h2>ユーザー情報の変更</h2>
-		
-		
-		<div>
-			<p>ユーザー名の変更</p>
+		<section id="update-password" class="wrapper">
+			<h2 class="section-title">ユーザー情報の変更</h2>
+			<p class="description">ユーザー名の変更</p>
 			
 			<form th:action="@{/update/username}" method="post" th:object="${usernameUpdateForm}">
-				
-				<div>
-					<ul>
-			            <li th:each="error : ${#fields.detailedErrors()}" style="color: red">
-			                <span th:text="${error.message}"></span>
-			            </li>
-		        	</ul>
-					<div th:if="${updateError}">
-						<p th:text="${updateError}"></p>
-					</div>
-					<label>ユーザー名（10文字以内）</label>
-					<input type="text" th:field="*{username}">
-					<input type="submit" name="next" value="確認">
+				<ul class="error">
+		            <li th:each="error : ${#fields.detailedErrors()}">
+		                <span th:text="${error.message}"></span>
+		            </li>
+		        </ul>
+		        
+				<div class="error" th:if="${updateError}">
+					<p th:text="${updateError}"></p>
 				</div>
+				
+				<div class="user-form">
+					<input type="text" th:field="*{username}" placeholder="ユーザー名（10文字以内）">
+				</div>
+				
+				<input class="btn" type="submit" name="next" value="確認">
+				
 			</form>
-			
-		</div>
+		</section>
+		
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
 			
 			
 	</main>

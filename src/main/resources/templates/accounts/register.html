@@ -6,46 +6,57 @@
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<link th:href="@{/css/top.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> 
+	<link th:href="@{/css/accounts/account.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
     	<!-- header -->
-		<header id="header" class="container">
-			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
-			<ul>
-				<li><a th:href="@{/signup}">新規登録</a></li>
-				<li><a th:href="@{/login}">ログイン</a></li>
-			</ul>
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a th:href="@{/login}">ログイン</a></li>
+					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+				</ul>
+			</nav>
 		</header>
 		
-		<h2>新規ユーザー登録</h2>
-		<p>新規ユーザー登録するには、ユーザー名とパスワードを入力してください</p>
-		<form th:action="@{/signup}" method="post" th:object="${signupForm}">
-			<ul>
-	            <li th:each="error : ${#fields.detailedErrors()}" style="color: red">
-	                <span th:text="${error.message}"></span>
-	            </li>
-        	</ul>
-			<div th:if="${signupError}">
-				<p th:text="${signupError}"></p>
-			</div>
-        
-			<div>
-				<label>ニックネーム（10文字以内）</label>
-				<input type="text" th:field="*{username}">
-			</div>
-			<div>
-				<label>パスワード</label>
-				<input type="password" th:field="*{password}">
-			</div>
-			<div>
-				<input type="submit" name="next" value="確認">
-			</div>
-		</form>
+		<section id="signup" class="wrapper">
+			<h2 class="section-title">新規ユーザー登録</h2>
+			<p class="description">新規ユーザー登録するには、ユーザー名とパスワードを入力してください</p>
+			<form th:action="@{/signup}" method="post" th:object="${signupForm}">
+				<ul class="error">
+		            <li th:each="error : ${#fields.detailedErrors()}" style="color: red">
+		                <span th:text="${error.message}"></span>
+		            </li>
+	        	</ul>
+				<div class="error" th:if="${signupError}">
+					<p th:text="${signupError}"></p>
+				</div>
+				
+				<div class="user-form">
+					<input type="text" th:field="*{username}" placeholder="ユーザー名（10文字以内）">
+					<input type="password" th:field="*{password}" placeholder="パスワード（8文字以上）">
+				</div>
+				
+				<input class="btn" type="submit" name="next" value="確認">
+			</form>
+		</section>
 		
-		<a th:href="@{/login}">すでにユーザー登録済の方はこちら</a>
+		<section id="user-link" class="wrapper">
+			<p class="description">すでにユーザー登録済の方はこちら</p>
+			<a class="btn" th:href="@{/login}">ログイン</a>
+		</section>
+		
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
+		
 	</main>
 </body>
 </html>

@@ -6,33 +6,46 @@
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<link th:href="@{/css/top.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> 
+	<link th:href="@{/css/accounts/confirm.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
     	<!-- header -->
-		<header id="header" class="container">
-			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
-			<ul>
-				<li><a th:href="@{/signup}">新規登録</a></li>
-				<li><a th:href="@{/login}">ログイン</a></li>
-			</ul>
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
+			<nav>
+				<ul>
+					<li>
+						<form th:action="@{/logout}" method="post">
+							<input type="submit" name="logout" value="ログアウト">
+						</form>
+					</li>
+					<li><a th:href="@{/mypage}">マイページ</a></li>
+					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+				</ul>
+			</nav>
 		</header>
 		
-		<h2>入力内容の確認</h2>
+		<section id="confirm-username" class="wrapper">
+			<h2 class="section-title">入力内容の確認</h2>
 		
-		<div>
 			<form th:action="@{/update/username}" method="post" th:object="${usernameUpdateForm}">
-					<p th:text="'ユーザー名：' + *{username}"></p>
-					<input type="hidden" th:field="*{username}">	
-				<div>
-					<p>以上の内容でよろしければ登録ボタンを押してください</p>
-					<input type="submit" name="save" value="登録">
-				</div>
+				<p class="confirm" th:text="'ユーザー名：' + *{username}"></p>
+				<input type="hidden" th:field="*{username}">	
+
+				<p class="description">以上の内容でよろしければ登録ボタンを押してください</p>
+				<input class="btn" type="submit" name="save" value="登録">
 			</form>
-		</div>
+		</section>
 		
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
 		
 	</main>
 </body>

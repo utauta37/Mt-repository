@@ -6,65 +6,82 @@
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<link th:href="@{/css/top.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> 
+	<link th:href="@{/css/accounts/mypage.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
     	<!-- header -->
-		<header id="header" class="container">
-			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
-			<ul>
-				<li><form th:action="@{/logout}" method="post">
-					<input type="submit" name="logout" value="ログアウト">
-				</form></li>
-			</ul>
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
+			<nav>
+				<ul>
+					<li>
+						<form th:action="@{/logout}" method="post">
+							<input type="submit" name="logout" value="ログアウト">
+						</form>
+					</li>
+					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+				</ul>
+			</nav>
 		</header>
 		
-		<h2>マイページ</h2>
-		<div>
-			<h2>こんにちは、<span  th:text="${#authentication.principal.username}"></span>さん！</h2>
-		</div>
+		<section id="mypage" class="wrapper">
+			<h2 class="section-title">マイページ</h2>
+			<p>こんにちは、<span  th:text="${#authentication.principal.username}"></span>山！</p>
+		</section>
 		
-		<div>
-			<h3>レビュー一覧</h3>
+		<section id="user-reviews" class="wrapper">
+			<h2 class="section-title">レビュー一覧</h2>
+			
 			<th:block th:each="review:${reviewList}">
-				<div th:object="${review}">
-					<a th:href="@{/mountain/show{id}(id=*{mountainId})}">
-						<h4 th:text="*{name}"></h4>
-					</a>
-					<h3 th:text="*{title}"></h3>
-					<p th:text="*{body}"></p>
-					<p th:text="*{#dates.format(createdAt,'YYYY年MM月DD日')}"></p>
+				<th:block th:object="${review}">
+					<div class="review">
+						<h3 class="review-title" th:text="*{title}"></h3>
+						<p th:text="*{body}"></p>
+						
+						<div class="user-info">
+							<a th:href="@{/mountain/show{id}(id=*{mountainId})}">
+								<p th:text="*{name}"></p>
+							</a>
+							<p th:text="*{#dates.format(createdAt,'YYYY年MM月DD日')}"></p>
+						</div>
+					</div>	
 					<form th:action="@{/review-delete}" method="post">
 						<input type="hidden" name="id" th:value="*{id}">
-						<button type="submit" value="delete">削除</button>
+						<button class="btn review-delete" type="submit" value="delete">削除</button>
 					</form>
-				</div>
+					
+				</th:block>
 			</th:block>
-		</div>
+		</section>
 		
-		<div>
-			<h3>ユーザー情報</h3>
-			<ul>
-				<li>ユーザー名：<span  th:text="${#authentication.principal.username}"></span>
-					<a th:href="@{/update/username}">変更</a>
-				</li>
-				
-				<li>パスワード：表示しません
-					<a th:href="@{/update/password}">変更</a>
-				</li>
-			</ul>
-		</div>
+		<section  id="user-update" class="wrapper">
+			<h2 class="section-title">ユーザー情報</h2>
+			<div class="update">
+				<p>ユーザー名：<span  th:text="${#authentication.principal.username}"></span></p>
+				<a class="btn" th:href="@{/update/username}">変更</a>
+			</div>
+			<div class="update">
+				<p>パスワード：表示しません</p>
+				<a class="btn" th:href="@{/update/password}">変更</a>	
+			</div>
 		
-		<div>
-			<p>ユーザー削除</p>
-			<form th:action="@{/user-delete}" method="post">
-				<button type="submit" name="delete">削除</button>
-			</form>
-		</div>
+			<div class="update">
+				<p>ユーザー削除：</p>
+				<form th:action="@{/user-delete}" method="post">
+					<button class="btn" type="submit" name="delete">削除</buttonclass="btn" >
+				</form>
+			</div>
+		</section>
 		
-		
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
 			
 			
 	</main>

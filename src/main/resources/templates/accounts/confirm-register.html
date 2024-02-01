@@ -6,8 +6,8 @@
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<link th:href="@{/css/top.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> 
+	<link th:href="@{/css/accounts/confirm.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
@@ -17,24 +17,28 @@
 			<ul>
 				<li><a th:href="@{/signup}">新規登録</a></li>
 				<li><a th:href="@{/login}">ログイン</a></li>
+				<li><a th:href="@{/mountain/search}">山を探す</a></li>
 			</ul>
 		</header>
 		
-		<h2>入力内容の確認</h2>
+		<section id="confirm-register" class="wrapper">
+			<h2 class="section-title">入力内容の確認</h2>
 		
 			<form th:action="@{/signup}" method="post" th:object="${signupForm}">
-					<p th:text="'ユーザー名：' + *{username}"></p>
-					<input type="hidden" th:field="*{username}">
-					<p th:text="'パスワード：' + *{password}"></p>
-					<input type="hidden" th:field="*{password}">
-					
-				<div>
-					<p>以上の内容でよろしければ登録ボタンを押してください</p>
-					<input type="submit" name="save" value="登録">
-				</div>
-			</form>
-			<a th:href="@{/login}">すでにユーザー登録済の方はこちら</a>		
+				<p class="confirm" th:text="'ユーザー名：' + *{username}"></p>
+				<input type="hidden" th:field="*{username}">
+				<p class="confirm" th:text="'パスワード：' + *{password}"></p>
+				<input type="hidden" th:field="*{password}">
 
+				<p  class="description">以上の内容でよろしければ登録ボタンを押してください</p>
+				<input class="btn" type="submit" name="save" value="登録">
+			</form>	
+
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
 		
 	</main>
 </body>
