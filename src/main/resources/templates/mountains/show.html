@@ -6,64 +6,94 @@
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<!-- <link rel="stylesheet" href="../static/css/top.css"> -->
-	<link th:href="@{/css/top.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> 
+	<link th:href="@{/css/mountains/show.css}" rel="stylesheet"/>
 </head>
 <body>
 	<main>
     	<!-- header -->
-		<header id="header" class="container">
-			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
-			<ul>
-				<li><a th:href="@{/signup}">新規登録</a></li>
-				<li><a th:href="@{/login}">ログイン</a></li>
-			</ul>
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a th:href="@{/signup}">新規登録</a></li>
+					<li><a th:href="@{/login}">ログイン</a></li>
+					<li><a th:href="@{/mypage}">マイページ</a></li>
+					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+				</ul>
+			</nav>
 		</header>
 		
-
-		<div th:object="${mountain}">
+		<!--　山の情報　-->
+		<section id="contents" class="wrapper" th:object="${mountain}">
+			<h2 class="section-title" th:text="*{name}"></h2>
 			
-			<h2 th:text="*{name}"></h2>
-			<p><!-- 改行コードの変換  -->
-			<th:block th:if="*{content}">
-				<!-- \r\nなどがきたら改行の繰り返し -->
-				<th:block th:each="line: *{content.split('\\r\\n|\\r|\\n', -1)}">
-					<th:block th:text="${line}" />
-					<br />
-				</th:block>
-			</th:block>
-			</p>
+			<div class="overview">
+				<p><!-- 改行コードの変換  -->
+					<th:block th:if="*{content}">
+						<!-- \r\nなどがきたら改行の繰り返し -->
+						<th:block th:each="line: *{content.split('\\r\\n|\\r|\\n', -1)}">
+							<th:block th:text="${line}" />
+							<br>
+						</th:block>
+					</th:block>
+				</p>
+			</div>
 			
-			<dl>
-				<dt>場所</dt>
+			<dl class="info">
+				<dt>場所：</dt>
 				<dd th:text="*{prefecture}"></dd>
 				
-				<dt>コースタイム</dt>
+				<dt>コースタイム：</dt>
 				<dd th:text="*{time}+'分'"></dd>
 				
-				<dt>最寄り駅</dt>
+				<dt>最寄り駅：</dt>
 				<dd th:text="*{station}"></dd>
 			</dl>
+		</section>
+		
+		<!--　山に関するレビュー　-->
+		<section id="reviews" class="wrapper">
+			<h2 class="section-title">この山に関するレビュー</h2>
 			
-			<div>
-				<h2>この山に関するレビュー</h2>
-				
-				<th:block th:each="review:${reviewList}">
-					<div th:object="${review}">
-						<h4 th:text="*{username}+'さん'"></h4>
-						<h3 th:text="*{title}"></h3>
-						<p th:text="*{body}"></p>
-						<p th:text="*{#dates.format(createdAt,'YYYY年MM月DD日')}"></p>
+			<th:block th:each="review:${reviewList}">
+				<th:block th:object="${review}">
+					<div class="review">
+						<h3 class="review-title" th:text="*{title}"></h3>
+						<p><!-- 改行コードの変換  -->
+							<th:block th:if="*{body}">
+							<!-- \r\nなどがきたら改行の繰り返し -->
+							<th:block th:each="line: *{body.split('\\r\\n|\\r|\\n', -1)}">
+								<th:block th:text="${line}" />
+								<br>
+								</th:block>
+							</th:block>
+						</p>
+						<ul class="user-info">
+							<li th:text="*{username}+'さん'"></li>
+							<li th:text="*{#dates.format(createdAt,'YYYY年MM月DD日')}"></li>
+						</ul>
 					</div>
 				</th:block>
-				
-				<a th:href="@{/mountain/review-create{id}(id = *{id})}">
+			</th:block>
+			
+			<div class="review-link">
+				<a class="btn" th:href="@{/mountain/review-create{id}(id = *{id})}">
+					すべてのレビューを見る
+				</a>
+				<a class="btn" th:href="@{/mountain/review-create{id}(id = ${mountain.id})}">
 					レビューを投稿する
 				</a>
 			</div>
+		</section>
 			
-		</div>
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
 	</main>
 </body>
 </html>

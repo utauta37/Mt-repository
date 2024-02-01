@@ -77,8 +77,8 @@ public class MountainService{
 	 * @param id
 	 * @return idによって取得
 	 */
-	public Mountain findById(int id){
-		return mapper.findById(id);
+	public Mountain findById(int mountainId){
+		return mapper.findById(mountainId);
 	}
 }
 

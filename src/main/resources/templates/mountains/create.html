@@ -7,36 +7,53 @@
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<link th:href="@{/css/top.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+	<link th:href="@{/css/mountains/create.css}" rel="stylesheet">
 </head>
 <body>
 	<main>
+		
     	<!-- header -->
-		<header id="header" class="container">
-			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
-			<ul>
-				<li><a th:href="@{/signup}">新規登録</a></li>
-				<li><a th:href="@{/login}">ログイン</a></li>
-			</ul>
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a th:href="@{/signup}">新規登録</a></li>
+					<li><a th:href="@{/login}">ログイン</a></li>
+					<li><a th:href="@{/mypage}">マイページ</a></li>
+					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+				</ul>
+			</nav>
 		</header>
 		
-			<h2>レビュー作成</h2>
-	
+<!--		レビュー投稿-->
+		<section id="review-create" class="wrapper">
+			<h2 class="section-title">レビュー作成</h2>
+			
 			<form th:action="@{/mountain/review-create{id}(id = ${id})}" method="POST" th:object="${reviewCreateForm}">
-				<div>
+				<div class="review">
 					<label>レビュータイトル</label>
 					<input type="text" th:field="*{title}">
-				</div>
-				
-				<div>
+
 					<label>投稿文</label>
 					<textarea　th:field="*{body}"></textarea>
 				</div>
-				<div>
-					<input type="submit" value="投稿する"/>
+				
+				<div class="review-submit">
+					<a class="btn" th:href="@{/mountain/show{id}(id = ${id})}">戻る</a>
+					<input class="btn" type="submit" value="投稿する"/>
 				</div>
 			</form>
+			
+		</section>
+		
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
 	</main>
 </body>
 </html>

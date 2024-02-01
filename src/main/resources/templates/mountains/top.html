@@ -7,58 +7,65 @@
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<link th:href="@{/css/top.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+	<link th:href="@{/css/mountains/top-search.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
     	<!-- header -->
-		<header id="header" class="container">
-			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
-			<ul>
-				<li><a th:href="@{/signup}">新規登録</a></li>
-				<li><a th:href="@{/login}">ログイン</a></li>
-			</ul>
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a th:href="@{/signup}">新規登録</a></li>
+					<li><a th:href="@{/login}">ログイン</a></li>
+					<li><a th:href="@{/mypage}">マイページ</a></li>
+					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+				</ul>
+			</nav>
 		</header>
 
 		<!-- mainvisual -->
 		<div id="mainvisual">
-			<img th:src="@{/images/IMG_0869.JPG}" alt="トップ画像">
+			<img th:src="@{/images/top.JPG}" alt="トップ画像">
 		</div>
 
 		<!-- サイトの説明 -->
-		<div class="container">
-			<h2 class="copy">目的があっても　運任せでも</h2>
-				<p>「明日、山に行こう！」そんなときに<br>
-				関東の手軽に出かけられる低山をメインに探せるサイトです。<br>
-				<br>
-				気分や条件で絞り込んでも、運に任せてボタンを押しても、<br>
-				最高のやまのぼりがあなたを待っています！</p>
-		</div>
+		<section id="overview" class="wrapper">
+			<h2 class="section-title">目的があっても　運任せでも</h2>
+				<p>「明日、山に行こう！」そんなときに、関東の手軽に出かけられる低山をメインに探せるサイトです。<br>
+				気分や条件で絞り込んでも、運に任せてボタンを押しても、最高のやまのぼりがあなたを待っています！</p>
+		</section>
 		
 		<!-- 検索ページ・運任せページへのリンク -->
-		<div class="container">
-			<a th:href="@{/mountain/search}" class="btn mt">関東の山を探す</a>
-			<a th:href="@{/mountain/result-random}" class="btn">運に任せる！</a>
+		<div class="wrapper">
+			<div class="button">
+				<a th:href="@{/mountain/search}" class="btn">関東の山を探す</a>
+				<a th:href="@{/mountain/result-random}" class="btn">運に任せる！</a>
+			</div>
 		</div>
 		
-		<div class="container">
-			<h2>ユーザー登録でレビューができる</h2>
-			<p>ユーザー登録をすると<br>
-			登った山や、気に入った山のレビューを書くことができます。<br>
+		<section id="userinfo" class="wrapper">
+			<h2 class="section-title">ユーザー登録でレビューができる</h2>
+			<p>ユーザー登録をすると、登った山や気に入った山のレビューを書くことができます。<br>
 			あなたのことばが、誰かのやまのぼりの参考になるかも…</p>
-		</div>
+		</section>
 
 		<!-- ログインページ・新規登録ページへのリンク -->
-		<div class="container">
-			<a th:href="@{/signup}" class="btn mt">新規登録</a>
-			<a th:href="@{/login}" class="btn">ログイン</a>
+		<div class="wrapper">
+			<div class="button">
+				<a th:href="@{/signup}" class="btn">新規登録</a>
+				<a th:href="@{/login}" class="btn">ログイン</a>
+			</div>
 		</div>
 
 
 		<!-- footer -->
-		<footer #id="footer" class="container">
+		<footer id="footer">
 			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
 		</footer>
 
 	</main>

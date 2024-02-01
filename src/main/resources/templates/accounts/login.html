@@ -1,47 +1,62 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="ja">
+	
 <head>
 	<meta charset="UTF-8">
 	<title>どのやまのぼる？～関東編～</title>
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<link th:href="@{/css/top.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+	<link th:href="@{/css/accounts/account.css}" rel="stylesheet" />
 </head>
+
 <body>
 	<main>
     	<!-- header -->
-		<header id="header" class="container">
-			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
-			<ul>
-				<li><a th:href="@{/signup}">新規登録</a></li>
-				<li><a th:href="@{/login}">ログイン</a></li>
-			</ul>
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a th:href="@{/signup}">新規登録</a></li>
+					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+				</ul>
+			</nav>
 		</header>
+
+		<section id="login" class="wrapper">
+			<h2 class="section-title">ログイン</h2>
+			<p class="description">ログインするにはメールアドレスとパスワードを入力してください</p>
+			
+			<!--ログイン失敗時エラー表示-->
+			<p class="error" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+	            th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></p>
+			
+			<!--ログイン情報入力フォーム-->
+			<form th:action="@{/login}" method="POST" th:object="${loginForm}">
+				<div class="user-form">
+					<input type="text" th:field="*{username}" placeholder="ユーザー名">
+					<input type="password" th:field="*{password}" placeholder="パスワード">
+				</div>
+				
+				<input class="btn" type="submit" value="ログイン"/>
+			</form>
+		</section>
 		
-		<h2>ログイン</h2>
-		<p>ログインするにはメールアドレスとパスワードを入力してください</p>
+		<section id="user-link" class="wrapper">
+			<p class="description">ユーザー登録がまだの方はこちら</p>
+			<a class="btn" th:href="@{/signup}">新規登録</a>
+		</section>
+
 		
-		<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-            th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></p>
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
 		
-		<form th:action="@{/login}" method="POST" th:object="${loginForm}">
-			<div>
-				<label>ユーザー名</label>
-				<input type="text" th:field="*{username}">
-			</div>
-			<div>
-				<label>パスワード</label>
-				<input type="password" th:field="*{password}">
-			</div>
-			<div>
-				<input type="submit" value="ログイン"/>
-			</div>
-		</form>
-		
-		<a th:href="@{/signup}">ユーザー登録がまだの方はこちら</a>
 	</main>
 </body>
 </html>

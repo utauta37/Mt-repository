@@ -6,36 +6,50 @@
 	<meta name="description" content="楽しい山登り。明日はどの山登る？">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link rel="icon" href="../public/img/favicon.ico">
-	<!-- <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> -->
-	<!-- <link rel="stylesheet" href="../static/css/top.css"> -->
-	<!--<link th:href="@{/css/top.css}" rel="stylesheet" />-->
+	 <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" /> 
+	<link th:href="@{/css/mountains/result.css}" rel="stylesheet" />
 </head>
 <body>
 	<main>
     	<!-- header -->
-		<header id="header" class="container">
-			<a th:href="@{/mountain}"><h1 class="site-title">どのやまのぼる？</h1></a>
-			<ul>
-				<li><a th:href="@{/signup}">新規登録</a></li>
-				<li><a th:href="@{/login}">ログイン</a></li>
-			</ul>
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a th:href="@{/signup}">新規登録</a></li>
+					<li><a th:href="@{/login}">ログイン</a></li>
+					<li><a th:href="@{/mypage}">マイページ</a></li>
+					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+				</ul>
+			</nav>
 		</header>
 		
-		
+		<section id="results" class="wrapper">
+			<h2 class="section-title">検索結果</h2>
+	
 			<th:block th:each="mountain:${mountainList}">
-				<div th:object="${mountain}">
-					<a th:href="@{/mountain/show{id}(id = *{id})}"><h2 th:text="*{name}"></h2></a>
-					<dl>
-						<dt>場所</dt>
+				<div class="contents" th:object="${mountain}">
+					<a th:href="@{/mountain/show{id}(id = *{id})}">
+						<h2 class="mountain-name" th:text="*{name}"></h2>
+					</a>
+					<dl class="info">
+						<dt >場所：</dt>
 						<dd th:text="*{prefecture}"></dd>
 						
-						<dt>コースタイム</dt>
+						<dt>コースタイム：</dt>
 						<dd th:text="*{time}+'分'"></dd>
 					</dl>
 				</div>
 			</th:block>
+		</section>
 		
-		
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
 	</main>
 
 </body>
