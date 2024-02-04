@@ -20,7 +20,7 @@
 			</h1>
 			<nav>
 				<ul>
-					<li><a th:href="@{/signup}">新規登録</a></li>
+					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/signup}">新規登録</a></li>
 					<li><a th:href="@{/mountain/search}">山を探す</a></li>
 				</ul>
 			</nav>
@@ -45,7 +45,7 @@
 			</form>
 		</section>
 		
-		<section id="user-link" class="wrapper">
+		<section sec:authorize="!hasRole('ROLE_USER')" id="user-link" class="wrapper">
 			<p class="description">ユーザー登録がまだの方はこちら</p>
 			<a class="btn" th:href="@{/signup}">新規登録</a>
 		</section>

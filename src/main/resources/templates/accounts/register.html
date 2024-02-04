@@ -29,7 +29,7 @@
 			<p class="description">新規ユーザー登録するには、ユーザー名とパスワードを入力してください</p>
 			<form th:action="@{/signup}" method="post" th:object="${signupForm}">
 				<ul class="error">
-		            <li th:each="error : ${#fields.detailedErrors()}" style="color: red">
+		            <li th:each="error : ${#fields.detailedErrors()}">
 		                <span th:text="${error.message}"></span>
 		            </li>
 	        	</ul>

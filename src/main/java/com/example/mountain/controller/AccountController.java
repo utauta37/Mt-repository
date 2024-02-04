@@ -41,53 +41,6 @@ public class AccountController {
 	
 	
 	/** 
-	 * 新規ユーザー登録画面
-	 * 
-	 * @param signupForm 入力情報
-	 * @param model
-	 * @return 表示画面
-	 */
-	@GetMapping("/signup")
-	public String registerView(SignupForm signupForm) {
-		return "accounts/register";
-	}
-	
-	/**
-	 * ユーザー新規登録
-	 * 
-	 * @param signupForm
-	 * @param result バインド結果
-	 * @return 確認画面または入力画面へのパス
-	 * @throws Exception 
-	 */
-	@PostMapping(value="/signup",params="next")
-	public String register(@Validated SignupForm signupForm,BindingResult result,Model model) {
-		//チェック処理を行い画面遷移する
-		if(result.hasErrors()) {
-			return "accounts/register";
-		}else if(accountService.userCheck(signupForm.getUsername())){
-			model.addAttribute("signupError","ユーザー名がすでに使用されています");
-			return "accounts/register";
-		}
-		return "accounts/confirm-register";
-	}
-	/**
-	 * ユーザー新規登録実行
-	 * 
-	 * @param signupForm　入力情報
-	 * @param model
-	 * @return　表示画面リダイレクト
-	 */
-	@PostMapping(value="/signup",params="save")
-	public String register(SignupForm signupForm,Model model) {
-		accountService.createUser(signupForm);
-		return "redirect:/mountain";
-	}
-	
-	
-	
-	
-	/** 
 	 * ログイン画面
 	 * 
 	 * @param loginForm 入力情報
@@ -112,6 +65,58 @@ public class AccountController {
 		model.addAttribute("reviewList",reviewList);
 		return "accounts/mypage";
 	}
+	
+	
+	
+	/** 
+	 * 新規ユーザー登録画面
+	 * 
+	 * @param signupForm 入力情報
+	 * @param model
+	 * @return 表示画面
+	 */
+	@GetMapping("/signup")
+	public String registerView(SignupForm signupForm,@AuthenticationPrincipal UserDetailsImpl user) {
+		//ログイン中の場合はマイページへ
+		if(user != null) {
+			return "redirect:/mypage";
+		}
+		return "accounts/register";
+	}
+	
+	/**
+	 * ユーザー新規登録
+	 * 
+	 * @param signupForm
+	 * @param result バインド結果
+	 * @return 確認画面または入力画面へのパス
+	 * @throws Exception 
+	 */
+	@PostMapping(value="/signup",params="next")
+	public String register(@Validated SignupForm signupForm,BindingResult result,Model model) {
+		//チェック処理を行い画面遷移する
+		if(result.hasErrors()) {
+			return "accounts/register";
+		}
+		if(accountService.userCheck(signupForm.getUsername())){
+			model.addAttribute("signupError","ユーザー名がすでに使用されています");
+			return "accounts/register";
+		}
+		return "accounts/confirm-register";
+	}
+	/**
+	 * ユーザー新規登録実行
+	 * 
+	 * @param signupForm　入力情報
+	 * @param model
+	 * @return　表示画面リダイレクト
+	 */
+	@PostMapping(value="/signup",params="save")
+	public String register(SignupForm signupForm,Model model) {
+		accountService.createUser(signupForm);
+		return "redirect:/mountain";
+	}
+	
 	
 	/**
 	 * レビュー削除

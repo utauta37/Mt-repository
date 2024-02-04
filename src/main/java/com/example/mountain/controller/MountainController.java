@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -162,13 +164,17 @@ public class MountainController {
 	/**
 	 * レビュー作成実行
 	 * 
-	 * @param user　認証情報
-	 * @param mountainId　山のid
-	 * @param reviewCreateForm　入力情報
-	 * @return　表示画面リダイレクト
+	 * @param user 認証情報
+	 * @param mountainId 山のID
+	 * @param reviewCreateForm 入力情報
+	 * @param result バインド結果
+	 * @return 入力画面または山詳細画面リダイレクト
 	 */
 	@PostMapping("/review-create{id}")
-	public String createReview(@AuthenticationPrincipal UserDetailsImpl user,@PathVariable("id")int mountainId,ReviewCreateForm reviewCreateForm) {
+	public String createReview(@Validated ReviewCreateForm reviewCreateForm,BindingResult result,@AuthenticationPrincipal UserDetailsImpl user,@PathVariable("id")int mountainId,Model model) {
+		if(result.hasErrors()) {
+			return "mountains/create";
+		}
 		reviewService.createReview(user,mountainId,reviewCreateForm);
 		return "redirect:/mountain/show{id}";
 	}

@@ -3,6 +3,7 @@ package com.example.mountain.authentication;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.mountain.entity.Account;
@@ -17,8 +18,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		return AuthorityUtils.createAuthorityList("ROLE_" + account.getRole());
 	}
 	
 	public int GetId() {

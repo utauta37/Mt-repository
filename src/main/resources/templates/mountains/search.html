@@ -18,9 +18,9 @@
 			</h1>
 			<nav>
 				<ul>
-					<li><a th:href="@{/signup}">新規登録</a></li>
-					<li><a th:href="@{/login}">ログイン</a></li>
-					<li><a th:href="@{/mypage}">マイページ</a></li>
+					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/signup}">新規登録</a></li>
+					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/login}">ログイン</a></li>
+					<li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/mypage}">マイページ</a></li>
 				</ul>
 			</nav>
 		</header>
