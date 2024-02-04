@@ -18,15 +18,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private final AccountMapper mapper;
 	
 
-	//selectUserで取得した情報を、UserDetailsインターフェースを実装するUserクラスに変換する
+	//selectUserで取得した情報を、UserDetailsインターフェースを実装するクラスに変換する
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {	
 		Account account = mapper.findByUsername(username);
 		//情報が取得できなかった場合UsernameNotFoundExceptionでthrowsする
 		if(account == null) {
 			throw new UsernameNotFoundException("User not found:" + username);
-		}
-		return (new UserDetailsImpl(account));
+		}		
+		return new UserDetailsImpl(account);
 	}
 
 

@@ -41,6 +41,34 @@ public class AccountController {
 	
 	
 	/** 
+	 * ログイン画面
+	 * 
+	 * @param loginForm 入力情報
+	 * @param model
+	 * @return 表示画面
+	 */
+	@GetMapping("/login")
+	public String loginView(LoginForm loginForm,Model model) {
+		return "accounts/login";
+	}
+	
+	/**
+	 * ログイン成功後画面
+	 * 
+	 * @param user 認証情報
+	 * @param model
+	 * @return　表示画面
+	 */
+	@GetMapping("/mypage")
+	public String loginSuccess(@AuthenticationPrincipal UserDetailsImpl user,Model model) {
+		List<Review> reviewList = reviewService.selectUserReview(user);
+		model.addAttribute("reviewList",reviewList);
+		return "accounts/mypage";
+	}
+	
+	
+	
+	/** 
 	 * 新規ユーザー登録画面
 	 * 
 	 * @param signupForm 入力情報
@@ -48,7 +76,11 @@ public class AccountController {
 	 * @return 表示画面
 	 */
 	@GetMapping("/signup")
-	public String registerView(SignupForm signupForm) {
+	public String registerView(SignupForm signupForm,@AuthenticationPrincipal UserDetailsImpl user) {
+		//ログイン中の場合はマイページへ
+		if(user != null) {
+			return "redirect:/mypage";
+		}
 		return "accounts/register";
 	}
 	
@@ -85,34 +117,6 @@ public class AccountController {
 		return "redirect:/mountain";
 	}
 	
-	
-	
-	
-	/** 
-	 * ログイン画面
-	 * 
-	 * @param loginForm 入力情報
-	 * @param model
-	 * @return 表示画面
-	 */
-	@GetMapping("/login")
-	public String loginView(LoginForm loginForm,Model model) {
-		return "accounts/login";
-	}
-	
-	/**
-	 * ログイン成功後画面
-	 * 
-	 * @param user 認証情報
-	 * @param model
-	 * @return　表示画面
-	 */
-	@GetMapping("/mypage")
-	public String loginSuccess(@AuthenticationPrincipal UserDetailsImpl user,Model model) {
-		List<Review> reviewList = reviewService.selectUserReview(user);
-		model.addAttribute("reviewList",reviewList);
-		return "accounts/mypage";
-	}
 	
 	/**
 	 * レビュー削除

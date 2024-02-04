@@ -8,10 +8,12 @@
 	<insert id="insertUser">
 		INSERT INTO accounts(
 			username,
-			password)
+			password,
+			role)
 		VALUES(
 			#{username},
-			#{password})
+			#{password},
+			USER)
 	</insert>
 	
 	<select id="findByUsername" resultType="com.example.mountain.entity.Account">

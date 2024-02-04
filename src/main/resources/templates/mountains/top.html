@@ -19,9 +19,9 @@
 			</h1>
 			<nav>
 				<ul>
-					<li><a th:href="@{/signup}">新規登録</a></li>
-					<li><a th:href="@{/login}">ログイン</a></li>
-					<li><a th:href="@{/mypage}">マイページ</a></li>
+					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/signup}">新規登録</a></li>
+					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/login}">ログイン</a></li>
+					<li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/mypage}">マイページ</a></li>
 					<li><a th:href="@{/mountain/search}">山を探す</a></li>
 				</ul>
 			</nav>
@@ -55,7 +55,7 @@
 
 		<!-- ログインページ・新規登録ページへのリンク -->
 		<div class="wrapper">
-			<div class="button">
+			<div sec:authorize="!hasRole('ROLE_USER')" class="button">
 				<a th:href="@{/signup}" class="btn">新規登録</a>
 				<a th:href="@{/login}" class="btn">ログイン</a>
 			</div>
