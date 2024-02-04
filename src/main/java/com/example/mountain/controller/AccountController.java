@@ -71,7 +71,13 @@ public class AccountController {
 		}
 		return "accounts/confirm-register";
 	}
-	
+	/**
+	 * ユーザー新規登録実行
+	 * 
+	 * @param signupForm　入力情報
+	 * @param model
+	 * @return　表示画面リダイレクト
+	 */
 	@PostMapping(value="/signup",params="save")
 	public String register(SignupForm signupForm,Model model) {
 		accountService.createUser(signupForm);
@@ -107,6 +113,12 @@ public class AccountController {
 		return "accounts/mypage";
 	}
 	
+	/**
+	 * レビュー削除
+	 * 
+	 * @param reviewId
+	 * @return
+	 */
 	@PostMapping("/review-delete")
 	public String deleteReview(@RequestParam("id")int reviewId) {
 		reviewService.deleteReview(reviewId);
