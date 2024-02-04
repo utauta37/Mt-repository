@@ -19,7 +19,7 @@
 			<nav>
 				<ul>
 					<li>
-						<form th:action="@{/logout}" method="post">
+						<form th:action="@{/logout}" method="post"  onsubmit="return logoutLink()">
 							<input type="submit" name="logout" value="ログアウト">
 						</form>
 					</li>
@@ -49,7 +49,7 @@
 							<p th:text="*{#dates.format(createdAt,'YYYY年MM月DD日')}"></p>
 						</div>
 					</div>	
-					<form th:action="@{/review-delete}" method="post">
+					<form th:action="@{/review-delete}" method="post" onsubmit="return reviewDelete()">
 						<input type="hidden" name="id" th:value="*{id}">
 						<button class="btn review-delete" type="submit" value="delete">削除</button>
 					</form>
@@ -71,8 +71,8 @@
 		
 			<div class="update">
 				<p>ユーザー削除：</p>
-				<form th:action="@{/user-delete}" method="post">
-					<button class="btn" type="submit" name="delete">削除</buttonclass="btn" >
+				<form th:action="@{/user-delete}" method="post" onsubmit="return userDelete()">
+					<button class="btn" type="submit" name="delete">削除</button>
 				</form>
 			</div>
 		</section>
@@ -85,5 +85,7 @@
 			
 			
 	</main>
+	<script th:src="@{/js/mountain.js}"></script>
+
 </body>
 </html>
