@@ -35,6 +35,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-### DB接続ファイル ###
-.application.properties

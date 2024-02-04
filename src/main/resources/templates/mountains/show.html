@@ -62,15 +62,8 @@
 				<th:block th:object="${review}">
 					<div class="review">
 						<h3 class="review-title" th:text="*{title}"></h3>
-						<p><!-- 改行コードの変換  -->
-							<th:block th:if="*{body}">
-							<!-- \r\nなどがきたら改行の繰り返し -->
-							<th:block th:each="line: *{body.split('\\r\\n|\\r|\\n', -1)}">
-								<th:block th:text="${line}" />
-								<br>
-								</th:block>
-							</th:block>
-						</p>
+						<p th:text="*{body}"></p>
+						
 						<ul class="user-info">
 							<li th:text="*{username}+'さん'"></li>
 							<li th:text="*{#dates.format(createdAt,'YYYY年MM月DD日')}"></li>
