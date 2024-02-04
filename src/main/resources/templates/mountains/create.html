@@ -33,6 +33,13 @@
 			<h2 class="section-title">レビュー作成</h2>
 			
 			<form th:action="@{/mountain/review-create{id}(id = ${id})}" method="POST" th:object="${reviewCreateForm}">
+				
+				<ul class="error">
+		            <li th:each="error : ${#fields.detailedErrors()}">
+		                <span th:text="${error.message}"></span>
+		            </li>
+	        	</ul>
+        	
 				<div class="review">
 					<label>レビュータイトル</label>
 					<input type="text" th:field="*{title}">

@@ -65,7 +65,8 @@ public class AccountController {
 		//チェック処理を行い画面遷移する
 		if(result.hasErrors()) {
 			return "accounts/register";
-		}else if(accountService.userCheck(signupForm.getUsername())){
+		}
+		if(accountService.userCheck(signupForm.getUsername())){
 			model.addAttribute("signupError","ユーザー名がすでに使用されています");
 			return "accounts/register";
 		}
