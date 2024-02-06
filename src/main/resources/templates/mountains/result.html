@@ -14,7 +14,7 @@
     	<!-- header -->
 		<header id="header" class="wrapper">
 			<h1 class="site-title">
-				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+				<a th:href="@{/mountain}"><img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/logo.JPG}" alt="サイトロゴ"></a>
 			</h1>
 			<nav>
 				<ul>
@@ -31,24 +31,32 @@
 	
 			<th:block th:each="mountain:${mountainList}">
 				<div class="contents" th:object="${mountain}">
-					<a th:href="@{/mountain/show{id}(id = *{id})}">
-						<h2 class="mountain-name" th:text="*{name}"></h2>
-					</a>
-					<dl class="info">
-						<dt >場所：</dt>
-						<dd th:text="*{prefecture}"></dd>
-						
-						<dt>コースタイム：</dt>
-						<dd th:text="*{time}+'分'"></dd>
-					</dl>
+					<div class="content-text">
+						<a th:href="@{/mountain/show{id}(id = *{id})}">
+							<h2 class="mountain-name" th:text="*{name}"></h2>
+						</a>
+						<dl class="info">
+							<dt >場所：</dt>
+							<dd th:text="*{prefecture}"></dd>
+							
+							<dt>コースタイム：</dt>
+							<dd th:text="*{time}+'分'"></dd>
+						</dl>
+					</div>
+					<div class="content-img">
+						<a th:href="@{/mountain/show{id}(id = *{id})}">
+							<img th:src="@{*{images}}">
+						</a>
+					</div>
 				</div>
+				
 			</th:block>
 		</section>
 		
 		<!-- footer -->
 		<footer id="footer">
 			<p>&copy; 2023  mina utada</p>
-			<img th:src="@{/images/footer.PNG}" alt="footer">
+			<img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/footer.PNG}" alt="footer">
 		</footer>
 	</main>
 

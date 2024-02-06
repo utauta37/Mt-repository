@@ -65,6 +65,13 @@ li {
 
 
 /*-------山の情報-------*/
+#contents img {
+	width: 100%;
+    max-width: 960px;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 30px;
+}
 #contents .overview{
 	width: 80%;
 	margin: 0 auto;

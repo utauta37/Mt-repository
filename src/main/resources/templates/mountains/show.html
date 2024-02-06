@@ -14,7 +14,7 @@
     	<!-- header -->
 		<header id="header" class="wrapper">
 			<h1 class="site-title">
-				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+				<a th:href="@{/mountain}"><img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/logo.JPG}" alt="サイトロゴ"></a>
 			</h1>
 			<nav>
 				<ul>
@@ -29,6 +29,10 @@
 		<!--　山の情報　-->
 		<section id="contents" class="wrapper" th:object="${mountain}">
 			<h2 class="section-title" th:text="*{name}"></h2>
+			
+			<div id="mountain-img">
+				<img th:src="@{*{images}}" alt="サイトロゴ">
+			</div>
 			
 			<div class="overview">
 				<p><!-- 改行コードの変換  -->
@@ -85,7 +89,7 @@
 		<!-- footer -->
 		<footer id="footer">
 			<p>&copy; 2023  mina utada</p>
-			<img th:src="@{/images/footer.PNG}" alt="footer">
+			<img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/footer.PNG}" alt="footer">
 		</footer>
 	</main>
 </body>
