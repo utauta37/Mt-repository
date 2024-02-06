@@ -69,12 +69,23 @@ li {
 #results {
 	margin: 40px auto;/*margin上書き*/
 }
-
 #results .contents {
 	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+}
+#results .mountain-name:hover {
+	opacity: 0.7;
+}
+#results .mountain-name:active {
+	color: #D0A900;
+}
+#results .content-text {
+	width: 80%;
     border-left: 6px solid #D0A900;
     border-radius: 4px;
-    margin: 0 auto 30px auto;
+    margin: 15px auto;
     padding: 20px;
 }
 #results .info {
@@ -83,12 +94,19 @@ li {
 	width: 100%;
 }
 #results dt {
-  width: 30%;
+  width: 50%;
 }
 
 #results dd {
-  width: 70%;
+  width: 50%;
 }
+#results .content-img {
+	width: 50%;
+	max-width: 190px;
+	display: flex;
+	align-items: center;
+}
+
 
 
 /*-------footer-------*/
@@ -127,15 +145,40 @@ li {
 	}
 	
 	
-/*	山の情報*/
-	#mountain-list .info {
-		flex-direction: column;
+	/*	山の情報*/
+	.mountain-name:after {
+	background-color: #D0A900;
+	border-radius: 2px;
+	content: "";
+	display: block;
+	height: 4px;
+	margin-bottom: 10px;
 	}
-	#mountain-list dt {
+	#results .mountain-name {
+		text-align: center;
+	}
+	#results .content-text {
+		border: none;
+		margin: 0 auto;
+	}
+	#results .contents{
+		display: flex;
+		flex-direction: column;
 		width: 100%;
 	}
-
-	#mountain-list dd {
-	  	width: 100%;
+	#results .info {
+		flex-direction: column;
+		text-align: center;
 	}
+	#results .info dt {
+		width: 100%;
+		background-color: #e6e6e6;
+	}
+	#results .info dd {
+		width: 100%;
+	}
+	#results .content-img {
+		width: 100%;
+	}
+	
 }

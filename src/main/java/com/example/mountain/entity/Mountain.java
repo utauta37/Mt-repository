@@ -17,5 +17,6 @@ public class Mountain {
 	private int time;
 	private String station;
 	private String prefecture;
+	private String images;
 
 }
