@@ -14,14 +14,14 @@
     	<!-- header -->
 		<header id="header" class="wrapper">
 			<h1 class="site-title">
-				<a th:href="@{/mountain}"><img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/logo.JPG}" alt="サイトロゴ"></a>
+				<a th:href="@{/}"><img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/logo.JPG}" alt="サイトロゴ"></a>
 			</h1>
 			<nav>
 				<ul>
 					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/signup}">新規登録</a></li>
 					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/login}">ログイン</a></li>
 					<li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/mypage}">マイページ</a></li>
-					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+					<li><a th:href="@{/search}">山を探す</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -77,10 +77,7 @@
 			</th:block>
 			
 			<div class="review-link">
-				<a class="btn" th:href="@{/mountain/review-create{id}(id = *{id})}">
-					すべてのレビューを見る
-				</a>
-				<a class="btn" th:href="@{/mountain/review-create{id}(id = ${mountain.id})}">
+				<a class="btn" th:href="@{/review-create{id}(id = ${mountain.id})}">
 					レビューを投稿する
 				</a>
 			</div>

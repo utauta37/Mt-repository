@@ -1,0 +1,16 @@
+
+#DB(mysql)接続情報
+#spring:
+#  datasource:
+ #   url: ${SPRING_DATASOURCE_URL}
+  #  username: ${SPRING_DATASOURCE_USERNAME}
+   # password: ${SPRING_DATASOURCE_PASSWORD}
+    #driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
+#server:
+ # port: 5000
+    
+#mybatis設定情報
+#mybatis:
+ # configuration:
+  #  map-underscore-to-camel-case: true
+

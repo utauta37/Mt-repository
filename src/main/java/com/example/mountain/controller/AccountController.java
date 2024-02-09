@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mountain.authentication.UserDetailsImpl;
@@ -30,7 +29,6 @@ import lombok.RequiredArgsConstructor;
  */
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/")
 public class AccountController {
 	
 	/** ユーザー情報service */
@@ -114,7 +112,7 @@ public class AccountController {
 	@PostMapping(value="/signup",params="save")
 	public String register(SignupForm signupForm,Model model) {
 		accountService.createUser(signupForm);
-		return "redirect:/mountain";
+		return "redirect:/";
 	}
 	
 	
@@ -172,12 +170,13 @@ public class AccountController {
 	 * @param user　認証情報
 	 * @param usernameUpdateForm　入力情報
 	 * @param model
-	 * @return　表示画面リダイレクト
+	 * @return　表示画面
 	 */
 	@PostMapping(value="/update/username",params="save")
 	public String updateUsename(@AuthenticationPrincipal UserDetailsImpl user,UsernameUpdateForm usernameUpdateForm,Model model) {
 		accountService.updateUsername(user,usernameUpdateForm);
-		return "redirect:/mountain";
+		
+		return "accounts/complete";
 	}
 	
 	
@@ -216,23 +215,23 @@ public class AccountController {
 	 * @param user　認証情報
 	 * @param passwordUpdateForm　入力情報
 	 * @param model
-	 * @return　表示画面リダイレクト
+	 * @return　表示画面
 	 */
 	@PostMapping(value="/update/password",params="save")
 	public String updatePassword(@AuthenticationPrincipal UserDetailsImpl user,PasswordUpdateForm passwordUpdateForm,Model model) {
 		accountService. updatePassword(user,passwordUpdateForm);
-		return "redirect:/mountain";
+		return "accounts/complete";
 	}
 	
 	/**
 	 * ユーザー削除
 	 * 
 	 * @param user　認証情報
-	 * @return　表示画面リダイレクト
+	 * @return　表示画面
 	 */
 	@PostMapping(value="/user-delete",params="delete")
 	public String deleteUser(@AuthenticationPrincipal UserDetailsImpl user) {
 		accountService.deleteUser(user);
-		return "redirect:/mountain";
+		return "accounts/complete";
 	}
 }

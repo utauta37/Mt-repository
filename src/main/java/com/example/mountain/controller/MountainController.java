@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/mountain")
+@RequestMapping("/")
 public class MountainController {
 	
 	/** MountainService */
@@ -45,9 +45,9 @@ public class MountainController {
 	 * 
 	 * @return　表示画面
 	 */
-	@GetMapping("")
+	@GetMapping("/")
 	public String top() {
-		return "mountains/top.html";
+		return "mountains/top";
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class MountainController {
 	 */
 	@GetMapping("/search")
 	public String search() {
-		return "mountains/search.html";
+		return "mountains/search";
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public class MountainController {
 	public String randomShow(Model model) {
 		Mountain mountain = mountainService.showOne();
 		model.addAttribute("mountain",mountain);
-		return "mountains/show.html";
+		return "mountains/show";
 	}
 	
 	
@@ -84,7 +84,7 @@ public class MountainController {
 	public String select(Model model) {
 		List<Mountain> mountainList = mountainService.showAll();
 		model.addAttribute("mountainList",mountainList);
-		return "mountains/result.html";
+		return "mountains/result";
 	}
 	
 	/**
@@ -98,7 +98,7 @@ public class MountainController {
 	public String selectPref(@RequestParam("prefecture") String prefecture,Model model) {
 		List<Mountain> mountainList = mountainService.selectPref(prefecture);
 		model.addAttribute("mountainList",mountainList);
-		return "mountains/result.html";
+		return "mountains/result";
 	}
 	
 	/**
@@ -112,7 +112,7 @@ public class MountainController {
 	public String selectTime(@RequestParam("time") String time,Model model) {
 		List<Mountain> mountainList = mountainService.selectTime(time);
 		model.addAttribute("mountainList",mountainList);
-		return "mountains/result.html";
+		return "mountains/result";
 	}
 	
 	/**
@@ -126,7 +126,7 @@ public class MountainController {
 	public String selectFeel(@RequestParam("feeling") String feeling,Model model) {
 		List<Mountain> mountainList = mountainService.selectFeel(feeling);
 		model.addAttribute("mountainList",mountainList);
-		return "mountains/result.html";
+		return "mountains/result";
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public class MountainController {
 		List<Review> reviewList = reviewService.selectReview(mountainId);
 		model.addAttribute("mountain",mountain);
 		model.addAttribute("reviewList",reviewList);
-		return "mountains/show.html";
+		return "mountains/show";
 	}
 	
 	/**
@@ -176,7 +176,7 @@ public class MountainController {
 			return "mountains/create";
 		}
 		reviewService.createReview(user,mountainId,reviewCreateForm);
-		return "redirect:/mountain/show{id}";
+		return "redirect:/show{id}";
 	}
 
 }

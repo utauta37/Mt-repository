@@ -9,11 +9,13 @@
 		INSERT INTO accounts(
 			username,
 			password,
+			deleted_at,
 			role)
 		VALUES(
 			#{username},
 			#{password},
-			USER)
+			NULL,
+			"USER")
 	</insert>
 	
 	<select id="findByUsername" resultType="com.example.mountain.entity.Account">

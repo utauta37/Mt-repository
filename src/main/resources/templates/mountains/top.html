@@ -15,14 +15,14 @@
     	<!-- header -->
 		<header id="header" class="wrapper">
 			<h1 class="site-title">
-				<a th:href="@{/mountain}"><img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/logo.JPG}" alt="サイトロゴ"></a>
+				<a th:href="@{/}"><img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/logo.JPG}" alt="サイトロゴ"></a>
 			</h1>
 			<nav>
 				<ul>
 					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/signup}">新規登録</a></li>
 					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/login}">ログイン</a></li>
 					<li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/mypage}">マイページ</a></li>
-					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+					<li><a th:href="@{/search}">山を探す</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -42,8 +42,8 @@
 		<!-- 検索ページ・運任せページへのリンク -->
 		<div class="wrapper">
 			<div class="button">
-				<a th:href="@{/mountain/search}" class="btn">関東の山を探す</a>
-				<a th:href="@{/mountain/result-random}" class="btn">運に任せる！</a>
+				<a th:href="@{/search}" class="btn">関東の山を探す</a>
+				<a th:href="@{/result-random}" class="btn">運に任せる！</a>
 			</div>
 		</div>
 		
