@@ -14,7 +14,7 @@
     	<!-- header -->
 		<header id="header" class="wrapper">
 			<h1 class="site-title">
-				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+				<a th:href="@{/}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
 			</h1>
 			<nav>
 				<ul>
@@ -23,7 +23,7 @@
 							<input type="submit" name="logout" value="ログアウト">
 						</form>
 					</li>
-					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+					<li><a th:href="@{/search}">山を探す</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -43,7 +43,7 @@
 						<p th:text="*{body}"></p>
 						
 						<div class="user-info">
-							<a th:href="@{/mountain/show{id}(id=*{mountainId})}">
+							<a th:href="@{/show{id}(id=*{mountainId})}">
 								<p th:text="*{name}"></p>
 							</a>
 							<p th:text="*{#dates.format(createdAt,'YYYY年MM月DD日')}"></p>

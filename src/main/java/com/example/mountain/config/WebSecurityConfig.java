@@ -32,11 +32,11 @@ public class WebSecurityConfig {
 				//ログイン画面は未認証でもアクセス可能
 				.permitAll()
 		).logout(logout -> logout
-				.logoutSuccessUrl("/mountain")
+				.logoutSuccessUrl("/")
 				.invalidateHttpSession(true)
 		).authorizeHttpRequests(authz -> authz
 				.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-				.requestMatchers("/mountain","/mountain/result**","/mountain/search","/mountain/show**","/signup").permitAll()
+				.requestMatchers("/","/top","/result**","/search","/show**","/signup").permitAll()
 				.anyRequest().authenticated()
 		);
 		return http.build();

@@ -16,12 +16,12 @@
     	<!-- header -->
 		<header id="header" class="wrapper">
 			<h1 class="site-title">
-				<a th:href="@{/mountain}"><img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/logo.JPG}" alt="サイトロゴ"></a>
+				<a th:href="@{/}"><img th:src="@{https://mountainbucket-utada.s3.ap-northeast-1.amazonaws.com/source/logo.JPG}" alt="サイトロゴ"></a>
 			</h1>
 			<nav>
 				<ul>
 					<li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/mypage}">マイページ</a></li>
-					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+					<li><a th:href="@{/search}">山を探す</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -30,7 +30,7 @@
 		<section id="review-create" class="wrapper">
 			<h2 class="section-title">レビュー作成</h2>
 			
-			<form th:action="@{/mountain/review-create{id}(id = ${id})}" method="POST" th:object="${reviewCreateForm}">
+			<form th:action="@{/review-create{id}(id = ${id})}" method="POST" th:object="${reviewCreateForm}">
 				
 				<ul class="error">
 		            <li th:each="error : ${#fields.detailedErrors()}">
@@ -47,7 +47,7 @@
 				</div>
 				
 				<div class="review-submit">
-					<a class="btn" th:href="@{/mountain/show{id}(id = ${id})}">戻る</a>
+					<a class="btn" th:href="@{/show{id}(id = ${id})}">戻る</a>
 					<input class="btn" type="submit" value="投稿する"/>
 				</div>
 			</form>

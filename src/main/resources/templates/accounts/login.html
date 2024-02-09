@@ -16,12 +16,12 @@
     	<!-- header -->
 		<header id="header" class="wrapper">
 			<h1 class="site-title">
-				<a th:href="@{/mountain}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
+				<a th:href="@{/}"><img th:src="@{/images/logo.JPG}" alt="サイトロゴ"></a>
 			</h1>
 			<nav>
 				<ul>
 					<li sec:authorize="!hasRole('ROLE_USER')"><a th:href="@{/signup}">新規登録</a></li>
-					<li><a th:href="@{/mountain/search}">山を探す</a></li>
+					<li><a th:href="@{/search}">山を探す</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -31,8 +31,10 @@
 			<p class="description">ログインするにはメールアドレスとパスワードを入力してください</p>
 			
 			<!--ログイン失敗時エラー表示-->
-			<p class="error" th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
-	            th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></p>
+			<div class="error">
+				<p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+		            th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></p>
+		    </div>
 			
 			<!--ログイン情報入力フォーム-->
 			<form th:action="@{/login}" method="POST" th:object="${loginForm}">

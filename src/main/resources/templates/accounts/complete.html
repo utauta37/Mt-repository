@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="ja">
+	
+<head>
+	<meta charset="UTF-8">
+	<title>どのやまのぼる？～関東編～</title>
+	<meta name="description" content="楽しい山登り。明日はどの山登る？">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="icon" href="../public/img/favicon.ico">
+	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+	<link th:href="@{/css/accounts/account.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<main>
+    	<!-- header -->
+		<header id="header" class="wrapper">
+			<h1 class="site-title">
+				<img th:src="@{/images/logo.JPG}" alt="サイトロゴ">
+			</h1>
+		</header>
+
+		<section id="complete" class="wrapper">
+			
+			<h2 class="section-title">情報を更新しました！</h2>
+			<p class="description">下のボタンからトップページへ移動してください</p>
+			
+			<form  th:action="@{/logout}" method="post">
+				<input class="btn" type="submit" name="logout" value="トップページへ">
+			</form>
+			
+		</section>
+
+		
+		<!-- footer -->
+		<footer id="footer">
+			<p>&copy; 2023  mina utada</p>
+			<img th:src="@{/images/footer.PNG}" alt="footer">
+		</footer>
+		
+	</main>
+</body>
+</html>
